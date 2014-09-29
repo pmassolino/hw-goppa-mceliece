@@ -1,0 +1,1345 @@
+----------------------------------------------------------------------------------
+-- Company: LARC - Escola Politecnica - University of Sao Paulo
+-- Engineer: Pedro Maat C. Massolino
+-- 
+-- Create Date:    05/12/2012 
+-- Design Name:    Controller_BC_Solving_Key_Equation_4
+-- Module Name:    Controller_BC_Solving_Key_Equation_4
+-- Project Name:   McEliece QD-Goppa Decoder
+-- Target Devices: Any
+-- Tool versions:  Xilinx ISE 13.3 WebPack
+--
+-- Description: 
+-- 
+-- The 2nd step in Goppa Code Decoding.
+--
+-- This is a state machine circuit that controls the part of computing
+-- polynomials BC in solving_key_equation_4. This state machine is synchronized
+-- with the Controller_FG_Solving_Key_Equation_4, in some states it waits for the other
+-- machine to finish.
+-- This state machine have 3 phases: first phase variable initialization,
+-- second computation of polynomial sigma, third step writing the polynomial sigma
+-- on a specific memory position.
+--
+-- Dependencies: 
+--
+-- VHDL-93
+--
+-- Revision: 
+-- Revision 1.0
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity controller_BC_solving_key_equation_4 is
+	Port(
+		clk : in STD_LOGIC;
+		rst : in STD_LOGIC;
+		B_equal_zero : in STD_LOGIC;
+		i_BC_equal_zero : in STD_LOGIC;
+		i_BC_minus_j_less_than_zero : in STD_LOGIC;
+		degree_G_less_equal_final_degree : in STD_LOGIC;
+		degree_F_less_than_degree_G : in STD_LOGIC;
+		degree_B_equal_degree_C_plus_j : in STD_LOGIC;
+		degree_B_less_than_degree_C_plus_j : in STD_LOGIC;
+		reg_looking_degree_BC_q : in STD_LOGIC_VECTOR(0 downto 0);
+		ready_controller_FG : in STD_LOGIC;
+		ready_controller_BC : out STD_LOGIC;		
+		write_enable_B : out STD_LOGIC;
+		write_enable_C : out STD_LOGIC;
+		ctr_i_BC_ce : out STD_LOGIC;
+		ctr_i_BC_load : out STD_LOGIC;
+		ctr_i_BC_rst : out STD_LOGIC;
+		reg_B_ce : out STD_LOGIC;
+		reg_B_rst : out STD_LOGIC;
+		reg_new_value_B_ce : out STD_LOGIC;
+		reg_new_value_B_rst : out STD_LOGIC;
+		sel_reg_new_value_B : out STD_LOGIC;
+		sel_load_new_value_B : out STD_LOGIC;
+		reg_C_ce : out STD_LOGIC;
+		reg_C_rst : out STD_LOGIC;
+		reg_new_value_C_ce : out STD_LOGIC;
+		reg_new_value_C_rst : out STD_LOGIC;
+		ctr_degree_B_ce : out STD_LOGIC;
+		ctr_degree_B_load : out STD_LOGIC;
+		ctr_degree_B_rst : out STD_LOGIC;
+		sel_ctr_degree_B : out STD_LOGIC;
+		reg_degree_C_ce : out STD_LOGIC;
+		reg_degree_C_rst : out STD_LOGIC;
+		reg_looking_degree_BC_d : out STD_LOGIC_VECTOR(0 downto 0);
+		reg_looking_degree_BC_ce : out STD_LOGIC;
+		ctr_load_address_B_ce : out STD_LOGIC;
+		ctr_load_address_B_load : out STD_LOGIC;
+		ctr_load_address_B_rst : out STD_LOGIC;
+		ctr_load_address_C_ce : out STD_LOGIC;
+		ctr_load_address_C_load : out STD_LOGIC;
+		ctr_load_address_C_rst : out STD_LOGIC;
+		reg_bus_address_B_ce : out STD_LOGIC;
+		reg_bus_address_C_ce : out STD_LOGIC;
+		reg_calc_address_B_ce : out STD_LOGIC;
+		reg_calc_address_C_ce : out STD_LOGIC;
+		reg_store_address_B_ce : out STD_LOGIC;
+		reg_store_address_B_rst : out STD_LOGIC;
+		reg_store_address_C_ce : out STD_LOGIC;
+		reg_store_address_C_rst : out STD_LOGIC
+	);
+end controller_BC_solving_key_equation_4;
+
+architecture Behavioral of controller_BC_solving_key_equation_4 is
+
+type State is (reset, load_counter, load_counter_2, prepare_store_B_C, prepare_store_B_C_2, store_B_C, last_store_B_C, swap_F_G_B_C, wait_j_controller_FG, prepare_degree_B, finalize_i, prepare_i, prepare_load_B_C, load_store_B_C, wait_finalize_controller_FG, prepare_final_swap, preparel_swap_address, prepare_load_sigma, prepare_load_sigma_2, load_sigma, load_store_sigma, final); 
+signal actual_state, next_state : State; 
+
+begin
+
+Clock: process (clk)
+begin
+	if (clk'event and clk = '1') then
+		if (rst = '1') then
+			actual_state <= reset;
+		else
+			actual_state <= next_state;
+		end if;        
+	end if;
+end process;
+
+Output: process(actual_state, B_equal_zero, i_BC_equal_zero, i_BC_minus_j_less_than_zero, degree_G_less_equal_final_degree, degree_F_less_than_degree_G, degree_B_equal_degree_C_plus_j, degree_B_less_than_degree_C_plus_j, reg_looking_degree_BC_q)
+begin
+	case (actual_state) is
+		when reset =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '1';
+			reg_B_ce <= '0';
+			reg_B_rst <= '1';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '1';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '1';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '1';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '1';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '1';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '0';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '1';
+			ctr_load_address_C_ce <= '0';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '1';
+			reg_bus_address_B_ce <= '0';
+			reg_bus_address_C_ce <= '0';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '1';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '1';
+			ready_controller_BC <= '0';
+		when load_counter =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '1';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '1';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '1';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '1';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '0';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '1';
+			ctr_load_address_C_ce <= '0';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '1';
+			reg_bus_address_B_ce <= '0';
+			reg_bus_address_C_ce <= '0';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+			ready_controller_BC <= '0';
+		when load_counter_2 =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '1';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '1';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '1';
+			reg_bus_address_C_ce <= '1';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when prepare_store_B_C =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '1';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '1';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '1';
+			reg_bus_address_C_ce <= '1';
+			reg_calc_address_B_ce <= '1';
+			reg_calc_address_C_ce <= '1';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when prepare_store_B_C_2 =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '1';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '1';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '1';
+			reg_bus_address_C_ce <= '1';
+			reg_calc_address_B_ce <= '1';
+			reg_calc_address_C_ce <= '1';
+			reg_store_address_B_ce <= '1';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '1';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when store_B_C =>
+			if(i_BC_equal_zero = '1') then
+				write_enable_B <= '1';
+				write_enable_C <= '1';	
+				ctr_i_BC_ce <= '0';
+				ctr_i_BC_load <= '0';
+				ctr_i_BC_rst <= '0';
+				reg_B_ce <= '0';
+				reg_B_rst <= '0';
+				reg_new_value_B_ce <= '1';
+				reg_new_value_B_rst <= '0';
+				sel_reg_new_value_B <= '1';
+				sel_load_new_value_B <= '0';
+				reg_C_ce <= '0';
+				reg_C_rst <= '0';
+				reg_new_value_C_ce <= '0';
+				reg_new_value_C_rst <= '1';
+				ctr_degree_B_ce <= '0';
+				ctr_degree_B_load <= '0';
+				ctr_degree_B_rst <= '0';
+				sel_ctr_degree_B <= '0';
+				reg_degree_C_ce <= '0';
+				reg_degree_C_rst <= '0';
+				reg_looking_degree_BC_d <= "0";
+				reg_looking_degree_BC_ce <= '0';
+				ctr_load_address_B_ce <= '0';
+				ctr_load_address_B_load <= '0';
+				ctr_load_address_B_rst <= '0';
+				ctr_load_address_C_ce <= '0';
+				ctr_load_address_C_load <= '0';
+				ctr_load_address_C_rst <= '0';
+				reg_bus_address_B_ce <= '0';
+				reg_bus_address_C_ce <= '0';
+				reg_calc_address_B_ce <= '0';
+				reg_calc_address_C_ce <= '0';
+				reg_store_address_B_ce <= '0';
+				reg_store_address_B_rst <= '0';
+				reg_store_address_C_ce <= '0';
+				reg_store_address_C_rst <= '0';
+				ready_controller_BC <= '0';
+			else
+				write_enable_B <= '1';
+				write_enable_C <= '1';
+				ctr_i_BC_ce <= '1';
+				ctr_i_BC_load <= '0';
+				ctr_i_BC_rst <= '0';
+				reg_B_ce <= '0';
+				reg_B_rst <= '0';
+				reg_new_value_B_ce <= '0';
+				reg_new_value_B_rst <= '1';
+				sel_reg_new_value_B <= '0';
+				sel_load_new_value_B <= '0';
+				reg_C_ce <= '0';
+				reg_C_rst <= '0';
+				reg_new_value_C_ce <= '0';
+				reg_new_value_C_rst <= '1';
+				ctr_degree_B_ce <= '0';
+				ctr_degree_B_load <= '0';
+				ctr_degree_B_rst <= '0';
+				sel_ctr_degree_B <= '0';
+				reg_degree_C_ce <= '0';
+				reg_degree_C_rst <= '0';
+				reg_looking_degree_BC_d <= "0";
+				reg_looking_degree_BC_ce <= '0';
+				ctr_load_address_B_ce <= '1';
+				ctr_load_address_B_load <= '0';
+				ctr_load_address_B_rst <= '0';
+				ctr_load_address_C_ce <= '1';
+				ctr_load_address_C_load <= '0';
+				ctr_load_address_C_rst <= '0';
+				reg_bus_address_B_ce <= '1';
+				reg_bus_address_C_ce <= '1';
+				reg_calc_address_B_ce <= '1';
+				reg_calc_address_C_ce <= '1';
+				reg_store_address_B_ce <= '1';
+				reg_store_address_B_rst <= '0';
+				reg_store_address_C_ce <= '1';
+				reg_store_address_C_rst <= '0';
+				ready_controller_BC <= '0';
+			end if;
+		when last_store_B_C =>
+			write_enable_B <= '1';
+			write_enable_C <= '1';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '0';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '0';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '0';
+			reg_bus_address_C_ce <= '0';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when swap_F_G_B_C =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '1';
+			ctr_degree_B_load <= '1';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '1';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '0';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '0';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '0';
+			reg_bus_address_C_ce <= '0';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '1';
+		when wait_j_controller_FG =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '0';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '0';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '0';
+			reg_bus_address_C_ce <= '0';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '1';
+		when prepare_degree_B =>
+			if(degree_B_equal_degree_C_plus_j = '1') then 
+				write_enable_B <= '0';
+				write_enable_C <= '0';
+				ctr_i_BC_ce <= '0';
+				ctr_i_BC_load <= '0';
+				ctr_i_BC_rst <= '0';
+				reg_B_ce <= '0';
+				reg_B_rst <= '0';
+				reg_new_value_B_ce <= '0';
+				reg_new_value_B_rst <= '0';
+				sel_reg_new_value_B <= '0';
+				sel_load_new_value_B <= '0';
+				reg_C_ce <= '0';
+				reg_C_rst <= '0';
+				reg_new_value_C_ce <= '0';
+				reg_new_value_C_rst <= '0';
+				ctr_degree_B_ce <= '0';
+				ctr_degree_B_load <= '0';
+				ctr_degree_B_rst <= '0';
+				sel_ctr_degree_B <= '0';
+				reg_degree_C_ce <= '0';
+				reg_degree_C_rst <= '0';
+				reg_looking_degree_BC_d <= "1";
+				reg_looking_degree_BC_ce <= '1';
+				ctr_load_address_B_ce <= '1';
+				ctr_load_address_B_load <= '1';
+				ctr_load_address_B_rst <= '0';
+				ctr_load_address_C_ce <= '1';
+				ctr_load_address_C_load <= '1';
+				ctr_load_address_C_rst <= '0';
+				reg_bus_address_B_ce <= '0';
+				reg_bus_address_C_ce <= '0';
+				reg_calc_address_B_ce <= '0';
+				reg_calc_address_C_ce <= '0';
+				reg_store_address_B_ce <= '0';
+				reg_store_address_B_rst <= '0';
+				reg_store_address_C_ce <= '0';
+				reg_store_address_C_rst <= '0';
+				ready_controller_BC <= '0';
+			elsif(degree_B_less_than_degree_C_plus_j = '1') then
+				write_enable_B <= '0';
+				write_enable_C <= '0';
+				ctr_i_BC_ce <= '0';
+				ctr_i_BC_load <= '0';
+				ctr_i_BC_rst <= '0';
+				reg_B_ce <= '0';
+				reg_B_rst <= '0';
+				reg_new_value_B_ce <= '0';
+				reg_new_value_B_rst <= '0';
+				sel_reg_new_value_B <= '0';
+				sel_load_new_value_B <= '0';
+				reg_C_ce <= '0';
+				reg_C_rst <= '0';
+				reg_new_value_C_ce <= '0';
+				reg_new_value_C_rst <= '0';
+				ctr_degree_B_ce <= '1';
+				ctr_degree_B_load <= '1';
+				ctr_degree_B_rst <= '0';
+				sel_ctr_degree_B <= '1';
+				reg_degree_C_ce <= '0';
+				reg_degree_C_rst <= '0';
+				reg_looking_degree_BC_d <= "0";
+				reg_looking_degree_BC_ce <= '1';
+				ctr_load_address_B_ce <= '1';
+				ctr_load_address_B_load <= '1';
+				ctr_load_address_B_rst <= '0';
+				ctr_load_address_C_ce <= '1';
+				ctr_load_address_C_load <= '1';
+				ctr_load_address_C_rst <= '0';
+				reg_bus_address_B_ce <= '0';
+				reg_bus_address_C_ce <= '0';
+				reg_calc_address_B_ce <= '0';
+				reg_calc_address_C_ce <= '0';
+				reg_store_address_B_ce <= '0';
+				reg_store_address_B_rst <= '0';
+				reg_store_address_C_ce <= '0';
+				reg_store_address_C_rst <= '0';
+				ready_controller_BC <= '0';
+			else
+				write_enable_B <= '0';
+				write_enable_C <= '0';
+				ctr_i_BC_ce <= '0';
+				ctr_i_BC_load <= '0';
+				ctr_i_BC_rst <= '0';
+				reg_B_ce <= '0';
+				reg_B_rst <= '0';
+				reg_new_value_B_ce <= '0';
+				reg_new_value_B_rst <= '0';
+				sel_reg_new_value_B <= '0';
+				sel_load_new_value_B <= '0';
+				reg_C_ce <= '0';
+				reg_C_rst <= '0';
+				reg_new_value_C_ce <= '0';
+				reg_new_value_C_rst <= '0';
+				ctr_degree_B_ce <= '0';
+				ctr_degree_B_load <= '0';
+				ctr_degree_B_rst <= '0';
+				sel_ctr_degree_B <= '0';
+				reg_degree_C_ce <= '0';
+				reg_degree_C_rst <= '0';
+				reg_looking_degree_BC_d <= "0";
+				reg_looking_degree_BC_ce <= '1';
+				ctr_load_address_B_ce <= '1';
+				ctr_load_address_B_load <= '1';
+				ctr_load_address_B_rst <= '0';
+				ctr_load_address_C_ce <= '1';
+				ctr_load_address_C_load <= '1';
+				ctr_load_address_C_rst <= '0';
+				reg_bus_address_B_ce <= '0';
+				reg_bus_address_C_ce <= '0';
+				reg_calc_address_B_ce <= '0';
+				reg_calc_address_C_ce <= '0';
+				reg_store_address_B_ce <= '0';
+				reg_store_address_B_rst <= '0';
+				reg_store_address_C_ce <= '0';
+				reg_store_address_C_rst <= '0';
+				ready_controller_BC <= '0';
+			end if;
+		when prepare_i =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '1';
+			ctr_i_BC_load <= '1';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_load_new_value_B <= '0';
+			sel_reg_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '1';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '1';
+			reg_bus_address_C_ce <= '1';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when finalize_i =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '1';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '1';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '1';
+			reg_bus_address_C_ce <= '1';
+			reg_calc_address_B_ce <= '1';
+			reg_calc_address_C_ce <= '1';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '1';
+		when prepare_load_B_C =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '1';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '1';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '1';
+			reg_C_ce <= '1';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '1';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '1';
+			reg_bus_address_C_ce <= '1';
+			reg_calc_address_B_ce <= '1';
+			reg_calc_address_C_ce <= '1';
+			reg_store_address_B_ce <= '1';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '1';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when load_store_B_C =>		
+			if(i_BC_equal_zero = '1') then
+				ready_controller_BC <= '1';
+			else
+				ready_controller_BC <= '0';
+			end if;
+			if(i_BC_minus_j_less_than_zero = '1') then
+				if(reg_looking_degree_BC_q(0) = '1' and B_equal_zero = '1') then
+					write_enable_B <= '1';
+					write_enable_C <= '0';
+					ctr_i_BC_ce <= '1';
+					ctr_i_BC_load <= '0';
+					ctr_i_BC_rst <= '0';
+					reg_B_ce <= '1';
+					reg_B_rst <= '0';
+					reg_new_value_B_ce <= '1';
+					reg_new_value_B_rst <= '0';
+					sel_reg_new_value_B <= '0';
+					sel_load_new_value_B <= '1';
+					reg_C_ce <= '0';
+					reg_C_rst <= '1';
+					reg_new_value_C_ce <= '1';
+					reg_new_value_C_rst <= '0';
+					ctr_degree_B_ce <= '1';
+					ctr_degree_B_load <= '0';
+					ctr_degree_B_rst <= '0';
+					sel_ctr_degree_B <= '0';
+					reg_degree_C_ce <= '0';
+					reg_degree_C_rst <= '0';
+					reg_looking_degree_BC_d <= "0";
+					reg_looking_degree_BC_ce <= '0';
+					ctr_load_address_B_ce <= '1';
+					ctr_load_address_B_load <= '0';
+					ctr_load_address_B_rst <= '0';
+					ctr_load_address_C_ce <= '1';
+					ctr_load_address_C_load <= '0';
+					ctr_load_address_C_rst <= '0';
+					reg_bus_address_B_ce <= '1';
+					reg_bus_address_C_ce <= '1';
+					reg_calc_address_B_ce <= '1';
+					reg_calc_address_C_ce <= '1';
+					reg_store_address_B_ce <= '1';
+					reg_store_address_B_rst <= '0';
+					reg_store_address_C_ce <= '1';
+					reg_store_address_C_rst <= '0';
+				else
+					write_enable_B <= '1';
+					write_enable_C <= '0';
+					ctr_i_BC_ce <= '1';
+					ctr_i_BC_load <= '0';
+					ctr_i_BC_rst <= '0';
+					reg_B_ce <= '1';
+					reg_B_rst <= '0';
+					reg_new_value_B_ce <= '1';
+					reg_new_value_B_rst <= '0';
+					sel_reg_new_value_B <= '0';
+					sel_load_new_value_B <= '1';
+					reg_C_ce <= '0';
+					reg_C_rst <= '1';
+					reg_new_value_C_ce <= '1';
+					reg_new_value_C_rst <= '0';
+					ctr_degree_B_ce <= '0';
+					ctr_degree_B_load <= '0';
+					ctr_degree_B_rst <= '0';
+					sel_ctr_degree_B <= '0';
+					reg_degree_C_ce <= '0';
+					reg_degree_C_rst <= '0';
+					reg_looking_degree_BC_d <= "0";
+					reg_looking_degree_BC_ce <= '1';
+					ctr_load_address_B_ce <= '1';
+					ctr_load_address_B_load <= '0';
+					ctr_load_address_B_rst <= '0';
+					ctr_load_address_C_ce <= '1';
+					ctr_load_address_C_load <= '0';
+					ctr_load_address_C_rst <= '0';
+					reg_bus_address_B_ce <= '1';
+					reg_bus_address_C_ce <= '1';
+					reg_calc_address_B_ce <= '1';
+					reg_calc_address_C_ce <= '1';
+					reg_store_address_B_ce <= '1';
+					reg_store_address_B_rst <= '0';
+					reg_store_address_C_ce <= '1';
+					reg_store_address_C_rst <= '0';
+				end if;
+			elsif(reg_looking_degree_BC_q(0) = '1' and B_equal_zero = '1') then
+				write_enable_B <= '1';
+				write_enable_C <= '0';
+				ctr_i_BC_ce <= '1';
+				ctr_i_BC_load <= '0';
+				ctr_i_BC_rst <= '0';
+				reg_B_ce <= '1';
+				reg_B_rst <= '0';
+				reg_new_value_B_ce <= '1';
+				reg_new_value_B_rst <= '0';
+				sel_reg_new_value_B <= '0';
+				sel_load_new_value_B <= '1';
+				reg_C_ce <= '1';
+				reg_C_rst <= '0';
+				reg_new_value_C_ce <= '1';
+				reg_new_value_C_rst <= '0';
+				ctr_degree_B_ce <= '1';
+				ctr_degree_B_load <= '0';
+				ctr_degree_B_rst <= '0';
+				sel_ctr_degree_B <= '0';
+				reg_degree_C_ce <= '0';
+				reg_degree_C_rst <= '0';
+				reg_looking_degree_BC_d <= "0";
+				reg_looking_degree_BC_ce <= '0';
+				ctr_load_address_B_ce <= '1';
+				ctr_load_address_B_load <= '0';
+				ctr_load_address_B_rst <= '0';
+				ctr_load_address_C_ce <= '1';
+				ctr_load_address_C_load <= '0';
+				ctr_load_address_C_rst <= '0';
+				reg_bus_address_B_ce <= '1';
+				reg_bus_address_C_ce <= '1';
+				reg_calc_address_B_ce <= '1';
+				reg_calc_address_C_ce <= '1';
+				reg_store_address_B_ce <= '1';
+				reg_store_address_B_rst <= '0';
+				reg_store_address_C_ce <= '1';
+				reg_store_address_C_rst <= '0';
+			else
+				write_enable_B <= '1';
+				write_enable_C <= '0';
+				ctr_i_BC_ce <= '1';
+				ctr_i_BC_load <= '0';
+				ctr_i_BC_rst <= '0';
+				reg_B_ce <= '1';
+				reg_B_rst <= '0';
+				reg_new_value_B_ce <= '1';
+				reg_new_value_B_rst <= '0';
+				sel_reg_new_value_B <= '0';
+				sel_load_new_value_B <= '1';
+				reg_C_ce <= '1';
+				reg_C_rst <= '0';
+				reg_new_value_C_ce <= '1';
+				reg_new_value_C_rst <= '0';
+				ctr_degree_B_ce <= '0';
+				ctr_degree_B_load <= '0';
+				ctr_degree_B_rst <= '0';
+				sel_ctr_degree_B <= '0';
+				reg_degree_C_ce <= '0';
+				reg_degree_C_rst <= '0';
+				reg_looking_degree_BC_d <= "0";
+				reg_looking_degree_BC_ce <= '1';
+				ctr_load_address_B_ce <= '1';
+				ctr_load_address_B_load <= '0';
+				ctr_load_address_B_rst <= '0';
+				ctr_load_address_C_ce <= '1';
+				ctr_load_address_C_load <= '0';
+				ctr_load_address_C_rst <= '0';
+				reg_bus_address_B_ce <= '1';
+				reg_bus_address_C_ce <= '1';
+				reg_calc_address_B_ce <= '1';
+				reg_calc_address_C_ce <= '1';
+				reg_store_address_B_ce <= '1';
+				reg_store_address_B_rst <= '0';
+				reg_store_address_C_ce <= '1';
+				reg_store_address_C_rst <= '0';
+			end if;
+		when wait_finalize_controller_FG =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '0';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '0';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '0';
+			reg_bus_address_C_ce <= '0';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '1';
+		when prepare_final_swap =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '1';
+			reg_B_ce <= '0';
+			reg_B_rst <= '1';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '1';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '0';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '0';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '0';
+			reg_bus_address_C_ce <= '0';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when preparel_swap_address =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '1';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '1';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '0';
+			reg_bus_address_C_ce <= '0';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when prepare_load_sigma =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '0';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '1';
+			reg_bus_address_C_ce <= '1';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when prepare_load_sigma_2 =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '1';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '1';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '1';
+			reg_bus_address_C_ce <= '1';
+			reg_calc_address_B_ce <= '1';
+			reg_calc_address_C_ce <= '1';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when load_sigma =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '1';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '1';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '1';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '1';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '1';
+			reg_bus_address_C_ce <= '1';
+			reg_calc_address_B_ce <= '1';
+			reg_calc_address_C_ce <= '1';
+			reg_store_address_B_ce <= '1';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '1';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when load_store_sigma =>
+			write_enable_B <= '0';
+			write_enable_C <= '1';
+			ctr_i_BC_ce <= '1';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '0';
+			reg_B_ce <= '1';
+			reg_B_rst <= '0';
+			reg_new_value_B_ce <= '1';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '1';
+			reg_C_rst <= '0';
+			reg_new_value_C_ce <= '1';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '0';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '0';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '1';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '1';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '1';
+			reg_bus_address_C_ce <= '1';
+			reg_calc_address_B_ce <= '1';
+			reg_calc_address_C_ce <= '1';
+			reg_store_address_B_ce <= '1';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '1';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when final =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '1';
+			reg_B_ce <= '0';
+			reg_B_rst <= '1';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '1';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '1';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '1';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '0';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '0';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '0';
+			reg_bus_address_C_ce <= '0';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+		when others =>
+			write_enable_B <= '0';
+			write_enable_C <= '0';
+			ctr_i_BC_ce <= '0';
+			ctr_i_BC_load <= '0';
+			ctr_i_BC_rst <= '1';
+			reg_B_ce <= '0';
+			reg_B_rst <= '1';
+			reg_new_value_B_ce <= '0';
+			reg_new_value_B_rst <= '0';
+			sel_reg_new_value_B <= '0';
+			sel_load_new_value_B <= '0';
+			reg_C_ce <= '0';
+			reg_C_rst <= '1';
+			reg_new_value_C_ce <= '0';
+			reg_new_value_C_rst <= '0';
+			ctr_degree_B_ce <= '0';
+			ctr_degree_B_load <= '0';
+			ctr_degree_B_rst <= '1';
+			sel_ctr_degree_B <= '0';
+			reg_degree_C_ce <= '0';
+			reg_degree_C_rst <= '1';
+			reg_looking_degree_BC_d <= "0";
+			reg_looking_degree_BC_ce <= '0';
+			ctr_load_address_B_ce <= '0';
+			ctr_load_address_B_load <= '0';
+			ctr_load_address_B_rst <= '0';
+			ctr_load_address_C_ce <= '0';
+			ctr_load_address_C_load <= '0';
+			ctr_load_address_C_rst <= '0';
+			reg_bus_address_B_ce <= '0';
+			reg_bus_address_C_ce <= '0';
+			reg_calc_address_B_ce <= '0';
+			reg_calc_address_C_ce <= '0';
+			reg_store_address_B_ce <= '0';
+			reg_store_address_B_rst <= '0';
+			reg_store_address_C_ce <= '0';
+			reg_store_address_C_rst <= '0';
+			ready_controller_BC <= '0';
+	end case;
+end process;
+
+New_State : process(actual_state, ready_controller_FG, B_equal_zero, i_BC_equal_zero, i_BC_minus_j_less_than_zero, degree_G_less_equal_final_degree, degree_F_less_than_degree_G, degree_B_equal_degree_C_plus_j, degree_B_less_than_degree_C_plus_j, reg_looking_degree_BC_q)
+begin
+	case (actual_state) is
+		when reset =>
+			next_state <= load_counter;
+		when load_counter =>
+			next_state <= load_counter_2;
+		when load_counter_2 =>
+			next_state <= prepare_store_B_C;
+		when prepare_store_B_C =>
+			next_state <= prepare_store_B_C_2;
+		when prepare_store_B_C_2 =>
+			next_state <= store_B_C;
+		when store_B_C =>
+			if(i_BC_equal_zero = '1') then
+				next_state <= last_store_B_C;
+			else
+				next_state <= store_B_C;
+			end if;
+		when last_store_B_C =>
+			next_state <= swap_F_G_B_C;
+		when swap_F_G_B_C =>
+			if(ready_controller_FG = '1') then
+				next_state <= prepare_degree_B;
+			else
+				next_state <= wait_j_controller_FG;
+			end if;
+		when wait_j_controller_FG =>
+			if(degree_G_less_equal_final_degree = '1') then
+				next_state <= prepare_final_swap;
+			elsif(ready_controller_FG = '1') then
+				next_state <= prepare_degree_B;
+			else
+				next_state <= wait_j_controller_FG;
+			end if;			
+		when prepare_degree_B =>
+			next_state <= prepare_i;
+		when prepare_i =>
+			next_state <= finalize_i;
+		when finalize_i =>
+			next_state <= prepare_load_B_C;
+		when prepare_load_B_C =>
+			next_state <= load_store_B_C;
+		when load_store_B_C =>
+			if(i_BC_equal_zero = '1') then
+				if(ready_controller_FG = '0') then
+					next_state <= wait_finalize_controller_FG;
+				elsif(degree_G_less_equal_final_degree = '1') then
+					next_state <= prepare_final_swap;
+				elsif(degree_F_less_than_degree_G = '1') then
+					next_state <= swap_F_G_B_C;
+				else
+					next_state <= wait_j_controller_FG;
+				end if;
+			else
+				next_state <= load_store_B_C;
+			end if;
+		when wait_finalize_controller_FG =>
+			if(ready_controller_FG = '0') then
+				next_state <= wait_finalize_controller_FG;
+			elsif(degree_G_less_equal_final_degree = '1') then
+				next_state <= prepare_final_swap;
+			elsif(degree_F_less_than_degree_G = '1') then
+				next_state <= swap_F_G_B_C;
+			else
+				next_state <= wait_j_controller_FG;
+			end if;
+		when prepare_final_swap =>
+			next_state <= preparel_swap_address;
+		when preparel_swap_address =>
+			next_state <= prepare_load_sigma;
+		when prepare_load_sigma =>
+			next_state <= prepare_load_sigma_2;
+		when prepare_load_sigma_2 =>
+			next_state <= load_sigma;
+		when load_sigma =>
+			next_state <= load_store_sigma;
+		when load_store_sigma =>
+			if(i_BC_equal_zero = '1') then
+				next_state <= final;
+			else
+				next_state <= load_store_sigma;
+			end if;
+		when final =>
+			next_state <= final;
+		when others =>
+			next_state <= reset;
+	end case;
+end process;
+
+end Behavioral;
