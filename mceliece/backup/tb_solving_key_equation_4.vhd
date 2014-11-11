@@ -457,8 +457,6 @@ end loop;
 wait;
 end process;
 
---clk <= not clk after PERIOD/2;
-
 address_value_C <= true_address_value_C when key_equation_found = '1' else test_address_value_C;
 address_new_value_C <= test_address_new_value_C;
 write_enable_C <= '0' when key_equation_found = '1' else test_write_enable_C;
@@ -473,7 +471,7 @@ process
 		wait for PERIOD*2;
 		rst <= '0';
 		wait until key_equation_found = '1';
-		report "Circuit finish = " & integer'image(cycle_count/2) & " cycles";
+		report "Circuit finish = " & integer'image((cycle_count - 2)/2) & " cycles";
 		wait for PERIOD;
 		i := 0;
 		while (i < (final_degree + 1)) loop

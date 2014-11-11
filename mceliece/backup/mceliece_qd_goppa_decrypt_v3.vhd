@@ -65,7 +65,7 @@
 --	size_number_of_errors : 
 --
 -- The number of bits necessary to store an array of number of errors + 1 length.
--- This is ceil(log2(number_of_errors+1))
+-- This is ceil(log2(number_of_errors + 1))
 --
 --
 -- Dependencies:
@@ -124,14 +124,14 @@ entity mceliece_qd_goppa_decrypt_v3 is
 
 		-- QD-GOPPA [2528, 2144, 32, 12] --
 	
---		number_of_polynomial_evaluator_syndrome_pipelines : integer := 1;
---		polynomial_evaluator_syndrome_pipeline_size : integer := 2;
---		polynomial_evaluator_syndrome_size_pipeline_size : integer := 2;
---		gf_2_m : integer range 1 to 20 := 12;
---		length_codeword : integer := 2528;
---		size_codeword : integer := 12;
---		number_of_errors : integer := 32;
---		size_number_of_errors : integer := 6
+		number_of_polynomial_evaluator_syndrome_pipelines : integer := 1;
+		polynomial_evaluator_syndrome_pipeline_size : integer := 2;
+		polynomial_evaluator_syndrome_size_pipeline_size : integer := 2;
+		gf_2_m : integer range 1 to 20 := 12;
+		length_codeword : integer := 2528;
+		size_codeword : integer := 12;
+		number_of_errors : integer := 32;
+		size_number_of_errors : integer := 6
 
 		-- QD-GOPPA [2816, 2048, 64, 12] --
 	
@@ -157,14 +157,14 @@ entity mceliece_qd_goppa_decrypt_v3 is
 
 		-- QD-GOPPA [7296, 5632, 128, 13] --
 	
-		number_of_polynomial_evaluator_syndrome_pipelines : integer := 4;
-		polynomial_evaluator_syndrome_pipeline_size : integer := 7;
-		polynomial_evaluator_syndrome_size_pipeline_size : integer := 3;
-		gf_2_m : integer range 1 to 20 := 13;
-		length_codeword : integer := 7296;
-		size_codeword : integer := 13;
-		number_of_errors : integer := 128;
-		size_number_of_errors : integer := 8
+--		number_of_polynomial_evaluator_syndrome_pipelines : integer := 4;
+--		polynomial_evaluator_syndrome_pipeline_size : integer := 7;
+--		polynomial_evaluator_syndrome_size_pipeline_size : integer := 3;
+--		gf_2_m : integer range 1 to 20 := 13;
+--		length_codeword : integer := 7296;
+--		size_codeword : integer := 13;
+--		number_of_errors : integer := 128;
+--		size_number_of_errors : integer := 8
 
 	);
 	Port(

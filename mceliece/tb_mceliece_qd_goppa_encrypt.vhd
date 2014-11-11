@@ -112,11 +112,11 @@ entity tb_mceliece_qd_goppa_encrypt is
 --		size_number_of_errors : integer := 2;
 --		number_dyadic_matrices : integer := 42;
 --		size_number_dyadic_matrices : integer := 6;
---		message_memory_file : string := "mceliece\data_tests\message_qdgoppa_52_28_4_6.dat";
---		error_memory_file : string := "mceliece\data_tests\error_qdgoppa_52_28_4_6.dat";
---		generator_matrix_memory_file : string := "mceliece\data_tests\generator_matrix_qdgoppa_52_28_4_6.dat";
---		ciphertext_memory_file : string := "mceliece\data_tests\ciphertext_qdgoppa_52_28_4_6.dat";
---		dump_ciphertext_memory_file : string := "mceliece\data_tests\dump_ciphertext_qdgoppa_52_28_4_6.dat"
+--		message_memory_file : string := "mceliece/data_tests/message_qdgoppa_52_28_4_6.dat";
+--		error_memory_file : string := "mceliece/data_tests/error_qdgoppa_52_28_4_6.dat";
+--		generator_matrix_memory_file : string := "mceliece/data_tests/generator_matrix_qdgoppa_52_28_4_6.dat";
+--		ciphertext_memory_file : string := "mceliece/data_tests/ciphertext_qdgoppa_52_28_4_6.dat";
+--		dump_ciphertext_memory_file : string := "mceliece/data_tests/dump_ciphertext_qdgoppa_52_28_4_6.dat"
 		
 	
 		-- QD-GOPPA [2528, 2144, 32, 12] --
@@ -129,11 +129,11 @@ entity tb_mceliece_qd_goppa_encrypt is
 		size_number_of_errors : integer := 5;
 		number_dyadic_matrices : integer := 804;
 		size_number_dyadic_matrices : integer := 10;
-		message_memory_file : string := "mceliece\data_tests\message_qdgoppa_2528_2144_32_12.dat";
-		error_memory_file : string := "mceliece\data_tests\error_qdgoppa_2528_2144_32_12.dat";
-		generator_matrix_memory_file : string := "mceliece\data_tests\generator_matrix_qdgoppa_2528_2144_32_12.dat";
-		ciphertext_memory_file : string := "mceliece\data_tests\ciphertext_qdgoppa_2528_2144_32_12.dat";
-		dump_ciphertext_memory_file : string := "mceliece\data_tests\dump_ciphertext_qdgoppa_2528_2144_32_12.dat"
+		message_memory_file : string := "mceliece/data_tests/message_qdgoppa_2528_2144_32_12.dat";
+		error_memory_file : string := "mceliece/data_tests/error_qdgoppa_2528_2144_32_12.dat";
+		generator_matrix_memory_file : string := "mceliece/data_tests/generator_matrix_qdgoppa_2528_2144_32_12.dat";
+		ciphertext_memory_file : string := "mceliece/data_tests/ciphertext_qdgoppa_2528_2144_32_12.dat";
+		dump_ciphertext_memory_file : string := "mceliece/data_tests/dump_ciphertext_qdgoppa_2528_2144_32_12.dat"
 		
 		-- QD-GOPPA [2816, 2048, 64, 12] --
 		
@@ -145,11 +145,11 @@ entity tb_mceliece_qd_goppa_encrypt is
 --		size_number_of_errors : integer := 6;
 --		number_dyadic_matrices : integer := 384;
 --		size_number_dyadic_matrices : integer := 9;
---		message_memory_file : string := "mceliece\data_tests\message_qdgoppa_2816_2048_64_12.dat";
---		error_memory_file : string := "emceliece_data_tests\rror_qdgoppa_2816_2048_64_12.dat";
---		generator_matrix_memory_file : string := "mceliece\data_tests\generator_matrix_qdgoppa_2816_2048_64_12.dat";
---		ciphertext_memory_file : string := "mceliece\data_tests\ciphertext_qdgoppa_2816_2048_64_12.dat";
---		dump_ciphertext_memory_file : string := "mceliece\data_tests\dump_ciphertext_qdgoppa_2816_2048_64_12.dat"
+--		message_memory_file : string := "mceliece/data_tests/message_qdgoppa_2816_2048_64_12.dat";
+--		error_memory_file : string := "emceliece_data_tests/rror_qdgoppa_2816_2048_64_12.dat";
+--		generator_matrix_memory_file : string := "mceliece/data_tests/generator_matrix_qdgoppa_2816_2048_64_12.dat";
+--		ciphertext_memory_file : string := "mceliece/data_tests/ciphertext_qdgoppa_2816_2048_64_12.dat";
+--		dump_ciphertext_memory_file : string := "mceliece/data_tests/dump_ciphertext_qdgoppa_2816_2048_64_12.dat"
 
 		-- QD-GOPPA [3328, 2560, 64, 12] --
 		
@@ -161,11 +161,11 @@ entity tb_mceliece_qd_goppa_encrypt is
 --		size_number_of_errors : integer := 6;
 --		number_dyadic_matrices : integer := 480;
 --		size_number_dyadic_matrices : integer := 9;
---		message_memory_file : string := "mceliece\data_tests\message_qdgoppa_3328_2560_64_12.dat";
---		error_memory_file : string := "mceliece\data_tests\error_qdgoppa_3328_2560_64_12.dat";
---		generator_matrix_memory_file : string := "mceliece\data_tests\generator_matrix_qdgoppa_3328_2560_64_12.dat";
---		ciphertext_memory_file : string := "mceliece\data_tests\ciphertext_qdgoppa_3328_2560_64_12.dat";
---		dump_ciphertext_memory_file : string := "mceliece\data_tests\dump_ciphertext_qdgoppa_3328_2560_64_12.dat"
+--		message_memory_file : string := "mceliece/data_tests/message_qdgoppa_3328_2560_64_12.dat";
+--		error_memory_file : string := "mceliece/data_tests/error_qdgoppa_3328_2560_64_12.dat";
+--		generator_matrix_memory_file : string := "mceliece/data_tests/generator_matrix_qdgoppa_3328_2560_64_12.dat";
+--		ciphertext_memory_file : string := "mceliece/data_tests/ciphertext_qdgoppa_3328_2560_64_12.dat";
+--		dump_ciphertext_memory_file : string := "mceliece/data_tests/dump_ciphertext_qdgoppa_3328_2560_64_12.dat"
 
 		-- QD-GOPPA [7296, 5632, 128, 13] --
 		
@@ -177,11 +177,11 @@ entity tb_mceliece_qd_goppa_encrypt is
 --		size_number_of_errors : integer := 7;
 --		number_dyadic_matrices : integer := 572;
 --		size_number_dyadic_matrices : integer := 10;
---		message_memory_file : string := "mceliece\data_tests\message_qdgoppa_7296_5632_128_13.dat";
---		error_memory_file : string := "mceliece\data_tests\error_qdgoppa_7296_5632_128_13.dat";
---		generator_matrix_memory_file : string := "mceliece\data_tests\generator_matrix_qdgoppa_7296_5632_128_13.dat";
---		ciphertext_memory_file : string := "mceliece\data_tests\ciphertext_qdgoppa_7296_5632_128_13.dat";
---		dump_ciphertext_memory_file : string := "mceliece\data_tests\dump_ciphertext_qdgoppa_7296_5632_128_13.dat"
+--		message_memory_file : string := "mceliece/data_tests/message_qdgoppa_7296_5632_128_13.dat";
+--		error_memory_file : string := "mceliece/data_tests/error_qdgoppa_7296_5632_128_13.dat";
+--		generator_matrix_memory_file : string := "mceliece/data_tests/generator_matrix_qdgoppa_7296_5632_128_13.dat";
+--		ciphertext_memory_file : string := "mceliece/data_tests/ciphertext_qdgoppa_7296_5632_128_13.dat";
+--		dump_ciphertext_memory_file : string := "mceliece/data_tests/dump_ciphertext_qdgoppa_7296_5632_128_13.dat"
 		
 	);
 end tb_mceliece_qd_goppa_encrypt;
@@ -466,8 +466,6 @@ end loop;
 wait;
 end process;
 	
---clk <= not clk after PERIOD/2;
-	
 address_codeword <= true_address_ciphertext when encryption_finalized = '1' else test_address_codeword;
 	
 process
@@ -480,7 +478,7 @@ process
 		wait for PERIOD*2;
 		rst <= '0';
 		wait until encryption_finalized = '1';
-		report "Circuit finish = " & integer'image(cycle_count/2) & " cycles";
+		report "Circuit finish = " & integer'image((cycle_count - 2)/2) & " cycles";
 		wait for PERIOD;
 		i := 0;
 		while (i < (length_codeword)) loop

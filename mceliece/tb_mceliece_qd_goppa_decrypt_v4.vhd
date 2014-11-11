@@ -3,15 +3,15 @@
 -- Engineer: Pedro Maat C. Massolino
 -- 
 -- Create Date:    05/12/2012 
--- Design Name:    Tb_McEliece_QD-Goppa_Decrypt_v3
--- Module Name:    Tb_McEliece_QD-Goppa_Decrypt_v3
+-- Design Name:    Tb_McEliece_QD-Goppa_Decrypt_v4
+-- Module Name:    Tb_McEliece_QD-Goppa_Decrypt_v4
 -- Project Name:   McEliece Goppa Decryption
 -- Target Devices: Any
 -- Tool versions:  Xilinx ISE 13.3 WebPack
 --
 -- Description: 
 --
--- This test bench tests mceliece_qd_goppa_decrypt_v3 circuit.
+-- This test bench tests mceliece_qd_goppa_decrypt_v4 circuit.
 -- The test is done only for one value loaded into memories, and in the end the output
 -- memories are verified.
 --
@@ -88,7 +88,7 @@
 -- VHDL-93
 -- IEEE.NUMERIC_STD_ALL;
 --
--- mceliece_qd_goppa_decrypt_v3 Rev 1.0
+-- mceliece_qd_goppa_decrypt_v4 Rev 1.0
 -- ram Rev 1.0
 -- ram_double Rev 1.0
 -- ram_bank Rev 1.0
@@ -103,7 +103,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity tb_mceliece_qd_goppa_decrypt_v3 is
+entity tb_mceliece_qd_goppa_decrypt_v4 is
 	Generic(
 		PERIOD : time := 10 ns;
 		
@@ -116,28 +116,28 @@ entity tb_mceliece_qd_goppa_decrypt_v3 is
 --		length_codeword : integer := 52;
 --		size_codeword : integer := 6;
 --		number_of_errors : integer := 4;
---		size_number_of_errors : integer := 2;
---		file_memory_L : string := "mceliece\data_tests\L_qdgoppa_52_28_4_6.dat";
---		file_memory_h : string := "mceliece\data_tests\h_qdgoppa_52_28_4_6.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_qdgoppa_52_28_4_6.dat";
---		file_memory_message : string := "mceliece\data_tests\plaintext_qdgoppa_52_28_4_6.dat";
---		file_memory_error : string := "mceliece\data_tests\error_qdgoppa_52_28_4_6.dat"
+--		size_number_of_errors : integer := 3;
+--		file_memory_L : string := "mceliece/data_tests/L_qdgoppa_52_28_4_6.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_qdgoppa_52_28_4_6.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_qdgoppa_52_28_4_6.dat";
+--		file_memory_message : string := "mceliece/data_tests/plaintext_qdgoppa_52_28_4_6.dat";
+--		file_memory_error : string := "mceliece/data_tests/error_qdgoppa_52_28_4_6.dat"
 	
 		-- GOPPA [2048, 1751, 27, 11] --
 	
---		number_of_polynomial_evaluator_syndrome_pipelines : integer := 4;
---		polynomial_evaluator_syndrome_pipeline_size : integer := 12;
---		polynomial_evaluator_syndrome_size_pipeline_size : integer := 4;
---		gf_2_m : integer range 1 to 20 := 11;
---		length_codeword : integer := 2048;
---		size_codeword : integer := 11;
---		number_of_errors : integer := 27;
---		size_number_of_errors : integer := 5;
---		file_memory_L : string := "mceliece\data_tests\L_goppa_2048_1751_27_11.dat";
---		file_memory_h : string := "mceliece\data_tests\h_goppa_2048_1751_27_11.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_goppa_2048_1751_27_11.dat";
---		file_memory_message : string := "mceliece\data_tests\plaintext_goppa_2048_1751_27_11.dat";
---		file_memory_error : string := "mceliece\data_tests\error_goppa_2048_1751_27_11.dat"
+		number_of_polynomial_evaluator_syndrome_pipelines : integer := 1;
+		polynomial_evaluator_syndrome_pipeline_size : integer := 12;
+		polynomial_evaluator_syndrome_size_pipeline_size : integer := 4;
+		gf_2_m : integer range 1 to 20 := 11;
+		length_codeword : integer := 2048;
+		size_codeword : integer := 11;
+		number_of_errors : integer := 27;
+		size_number_of_errors : integer := 5;
+		file_memory_L : string := "mceliece/data_tests/L_goppa_2048_1751_27_11.dat";
+		file_memory_h : string := "mceliece/data_tests/h_goppa_2048_1751_27_11.dat";
+		file_memory_codeword : string := "mceliece/data_tests/ciphertext_goppa_2048_1751_27_11.dat";
+		file_memory_message : string := "mceliece/data_tests/plaintext_goppa_2048_1751_27_11.dat";
+		file_memory_error : string := "mceliece/data_tests/error_goppa_2048_1751_27_11.dat"
 	
 		-- GOPPA [2048, 1498, 50, 11] --
 	
@@ -149,11 +149,11 @@ entity tb_mceliece_qd_goppa_decrypt_v3 is
 --		size_codeword : integer := 11;
 --		number_of_errors : integer := 50;
 --		size_number_of_errors : integer := 6;
---		file_memory_L : string := "mceliece\data_tests\L_goppa_2048_1498_50_11.dat";
---		file_memory_h : string := "mceliece\data_tests\h_goppa_2048_1498_50_11.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_goppa_2048_1498_50_11.dat";
---		file_memory_message : string := "mceliece\data_tests\plaintext_goppa_2048_1498_50_11.dat";
---		file_memory_error : string := "mceliece\data_tests\error_goppa_2048_1498_50_11.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_goppa_2048_1498_50_11.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_goppa_2048_1498_50_11.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_goppa_2048_1498_50_11.dat";
+--		file_memory_message : string := "mceliece/data_tests/plaintext_goppa_2048_1498_50_11.dat";
+--		file_memory_error : string := "mceliece/data_tests/error_goppa_2048_1498_50_11.dat"
 
 		-- GOPPA [3307, 2515, 66, 12] --
 		
@@ -165,27 +165,27 @@ entity tb_mceliece_qd_goppa_decrypt_v3 is
 --		size_codeword : integer := 12;
 --		number_of_errors : integer := 66;
 --		size_number_of_errors : integer := 7;
---		file_memory_L : string := "mceliece\data_tests\L_goppa_3307_2515_66_12.dat";
---		file_memory_h : string := "mceliece\data_tests\h_goppa_3307_2515_66_12.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_goppa_3307_2515_66_12.dat";
---		file_memory_message : string := "mceliece\data_tests\plaintext_goppa_3307_2515_66_12.dat";
---		file_memory_error : string := "mceliece\data_tests\error_goppa_3307_2515_66_12.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_goppa_3307_2515_66_12.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_goppa_3307_2515_66_12.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_goppa_3307_2515_66_12.dat";
+--		file_memory_message : string := "mceliece/data_tests/plaintext_goppa_3307_2515_66_12.dat";
+--		file_memory_error : string := "mceliece/data_tests/error_goppa_3307_2515_66_12.dat"
 		
 		-- QD-GOPPA [2528, 2144, 32, 12] --
 	
-		number_of_polynomial_evaluator_syndrome_pipelines : integer := 4;
-		polynomial_evaluator_syndrome_pipeline_size : integer := 12;
-		polynomial_evaluator_syndrome_size_pipeline_size : integer := 4;
-		gf_2_m : integer range 1 to 20 := 12;
-		length_codeword : integer := 2528;
-		size_codeword : integer := 12;
-		number_of_errors : integer := 32;
-		size_number_of_errors : integer := 6;
-		file_memory_L : string := "mceliece\data_tests\L_qdgoppa_2528_2144_32_12.dat";
-		file_memory_h : string := "mceliece\data_tests\h_qdgoppa_2528_2144_32_12.dat";
-		file_memory_codeword : string := "mceliece\data_tests\ciphertext_qdgoppa_2528_2144_32_12.dat";
-		file_memory_message : string := "mceliece\data_tests\plaintext_qdgoppa_2528_2144_32_12.dat";
-		file_memory_error : string := "mceliece\data_tests\error_qdgoppa_2528_2144_32_12.dat"
+--		number_of_polynomial_evaluator_syndrome_pipelines : integer := 2;
+--		polynomial_evaluator_syndrome_pipeline_size : integer := 22;
+--		polynomial_evaluator_syndrome_size_pipeline_size : integer := 5;
+--		gf_2_m : integer range 1 to 20 := 12;
+--		length_codeword : integer := 2528;
+--		size_codeword : integer := 12;
+--		number_of_errors : integer := 32;
+--		size_number_of_errors : integer := 6;
+--		file_memory_L : string := "mceliece/data_tests/L_qdgoppa_2528_2144_32_12.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_qdgoppa_2528_2144_32_12.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_qdgoppa_2528_2144_32_12.dat";
+--		file_memory_message : string := "mceliece/data_tests/plaintext_qdgoppa_2528_2144_32_12.dat";
+--		file_memory_error : string := "mceliece/data_tests/error_qdgoppa_2528_2144_32_12.dat"
 
 		-- QD-GOPPA [2816, 2048, 64, 12] --
 	
@@ -197,11 +197,11 @@ entity tb_mceliece_qd_goppa_decrypt_v3 is
 --		size_codeword : integer := 12;
 --		number_of_errors : integer := 64;
 --		size_number_of_errors : integer := 7;
---		file_memory_L : string := "mceliece\data_tests\L_qdgoppa_2816_2048_64_12.dat";
---		file_memory_h : string := "mceliece\data_tests\h_qdgoppa_2816_2048_64_12.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_qdgoppa_2816_2048_64_12.dat";
---		file_memory_message : string := "mceliece\data_tests\plaintext_qdgoppa_2816_2048_64_12.dat";
---		file_memory_error : string := "mceliece\data_tests\error_qdgoppa_2816_2048_64_12.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_qdgoppa_2816_2048_64_12.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_qdgoppa_2816_2048_64_12.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_qdgoppa_2816_2048_64_12.dat";
+--		file_memory_message : string := "mceliece/data_tests/plaintext_qdgoppa_2816_2048_64_12.dat";
+--		file_memory_error : string := "mceliece/data_tests/error_qdgoppa_2816_2048_64_12.dat"
 
 		-- QD-GOPPA [3328, 2560, 64, 12] --
 	
@@ -213,11 +213,11 @@ entity tb_mceliece_qd_goppa_decrypt_v3 is
 --		size_codeword : integer := 12;
 --		number_of_errors : integer := 64;
 --		size_number_of_errors : integer := 7;
---		file_memory_L : string := "mceliece\data_tests\L_qdgoppa_3328_2560_64_12.dat";
---		file_memory_h : string := "mceliece\data_tests\h_qdgoppa_3328_2560_64_12.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_qdgoppa_3328_2560_64_12.dat";
---		file_memory_message : string := "mceliece\data_tests\plaintext_qdgoppa_3328_2560_64_12.dat";
---		file_memory_error : string := "mceliece\data_tests\error_qdgoppa_3328_2560_64_12.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_qdgoppa_3328_2560_64_12.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_qdgoppa_3328_2560_64_12.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_qdgoppa_3328_2560_64_12.dat";
+--		file_memory_message : string := "mceliece/data_tests/plaintext_qdgoppa_3328_2560_64_12.dat";
+--		file_memory_error : string := "mceliece/data_tests/error_qdgoppa_3328_2560_64_12.dat"
 
 		-- QD-GOPPA [7296, 5632, 128, 13] --
 		
@@ -229,16 +229,16 @@ entity tb_mceliece_qd_goppa_decrypt_v3 is
 --		size_codeword : integer := 13;
 --		number_of_errors : integer := 128;
 --		size_number_of_errors : integer := 8;
---		file_memory_L : string := "mceliece\data_tests\L_qdgoppa_7296_5632_128_13.dat";
---		file_memory_h : string := "mceliece\data_tests\h_qdgoppa_7296_5632_128_13.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_qdgoppa_7296_5632_128_13.dat";
---		file_memory_message : string := "mceliece\data_tests\plaintext_qdgoppa_7296_5632_128_13.dat";
---		file_memory_error : string := "mceliece\data_tests\error_qdgoppa_7296_5632_128_13.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_qdgoppa_7296_5632_128_13.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_qdgoppa_7296_5632_128_13.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_qdgoppa_7296_5632_128_13.dat";
+--		file_memory_message : string := "mceliece/data_tests/plaintext_qdgoppa_7296_5632_128_13.dat";
+--		file_memory_error : string := "mceliece/data_tests/error_qdgoppa_7296_5632_128_13.dat"
 	
 	);
-end tb_mceliece_qd_goppa_decrypt_v3;
+end tb_mceliece_qd_goppa_decrypt_v4;
 
-architecture Behavioral of tb_mceliece_qd_goppa_decrypt_v3 is
+architecture Behavioral of tb_mceliece_qd_goppa_decrypt_v4 is
 
 component ram
 	Generic (
@@ -330,7 +330,7 @@ component ram_double_bank
 	);
 end component;
 
-component mceliece_qd_goppa_decrypt_v3
+component mceliece_qd_goppa_decrypt_v4
 	Generic(
 		number_of_polynomial_evaluator_syndrome_pipelines : integer;
 		polynomial_evaluator_syndrome_pipeline_size : integer;
@@ -348,8 +348,8 @@ component mceliece_qd_goppa_decrypt_v3
 		value_L : in STD_LOGIC_VECTOR(((number_of_polynomial_evaluator_syndrome_pipelines)*(gf_2_m) - 1) downto 0);
 		value_syndrome : in STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
 		value_codeword : in STD_LOGIC_VECTOR((number_of_polynomial_evaluator_syndrome_pipelines - 1) downto 0);
-		value_G : in STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
-		value_B : in STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
+		value_s : in STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
+		value_v : in STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
 		value_sigma : in STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
 		value_sigma_evaluated : in STD_LOGIC_VECTOR(((number_of_polynomial_evaluator_syndrome_pipelines)*(gf_2_m) - 1) downto 0);
 		syndrome_generation_finalized : out STD_LOGIC;
@@ -359,27 +359,27 @@ component mceliece_qd_goppa_decrypt_v3
 		address_value_L : out STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
 		address_value_syndrome : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
 		address_value_codeword : out STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
-		address_value_G : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
-		address_value_B : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
+		address_value_s : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
+		address_value_v : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
 		address_value_sigma : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
 		address_value_sigma_evaluated : out STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
 		new_value_syndrome : out STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
-		new_value_G : out STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
-		new_value_B : out STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
+		new_value_s : out STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
+		new_value_v : out STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
 		new_value_sigma : out STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
 		new_value_message : out STD_LOGIC_VECTOR((number_of_polynomial_evaluator_syndrome_pipelines - 1) downto 0);
 		new_value_error : out STD_LOGIC_VECTOR((number_of_polynomial_evaluator_syndrome_pipelines - 1) downto 0);
 		new_value_sigma_evaluated : out STD_LOGIC_VECTOR(((number_of_polynomial_evaluator_syndrome_pipelines)*(gf_2_m) - 1) downto 0);
 		write_enable_new_value_syndrome : out STD_LOGIC;
-		write_enable_new_value_G : out STD_LOGIC;
-		write_enable_new_value_B : out STD_LOGIC; 
+		write_enable_new_value_s : out STD_LOGIC;
+		write_enable_new_value_v : out STD_LOGIC; 
 		write_enable_new_value_sigma : out STD_LOGIC;
 		write_enable_new_value_message : out STD_LOGIC;
 		write_enable_new_value_error : out STD_LOGIC;
 		write_enable_new_value_sigma_evaluated : out STD_LOGIC;
 		address_new_value_syndrome : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
-		address_new_value_G : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
-		address_new_value_B : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
+		address_new_value_s : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
+		address_new_value_v : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
 		address_new_value_sigma : out STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
 		address_new_value_message : out STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
 		address_new_value_error : out STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
@@ -393,8 +393,8 @@ signal value_h : STD_LOGIC_VECTOR(((number_of_polynomial_evaluator_syndrome_pipe
 signal value_L : STD_LOGIC_VECTOR(((number_of_polynomial_evaluator_syndrome_pipelines)*(gf_2_m) - 1) downto 0);
 signal value_syndrome : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
 signal value_codeword : STD_LOGIC_VECTOR(((number_of_polynomial_evaluator_syndrome_pipelines) - 1) downto 0);
-signal value_G : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
-signal value_B : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
+signal value_s : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
+signal value_v : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
 signal value_sigma : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
 signal value_sigma_evaluated : STD_LOGIC_VECTOR(((number_of_polynomial_evaluator_syndrome_pipelines)*(gf_2_m) - 1) downto 0);
 signal syndrome_generation_finalized : STD_LOGIC;
@@ -404,27 +404,27 @@ signal address_value_h : STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
 signal address_value_L : STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
 signal address_value_syndrome : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
 signal address_value_codeword : STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
-signal address_value_G : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
-signal address_value_B : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
+signal address_value_s : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
+signal address_value_v : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
 signal address_value_sigma : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
 signal address_value_sigma_evaluated : STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
 signal new_value_syndrome : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
-signal new_value_G : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
-signal new_value_B : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
+signal new_value_s : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
+signal new_value_v : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
 signal new_value_sigma : STD_LOGIC_VECTOR((gf_2_m - 1) downto 0);
 signal new_value_message : STD_LOGIC_VECTOR(((number_of_polynomial_evaluator_syndrome_pipelines) - 1) downto 0);
 signal new_value_error : STD_LOGIC_VECTOR(((number_of_polynomial_evaluator_syndrome_pipelines) - 1) downto 0);
 signal new_value_sigma_evaluated : STD_LOGIC_VECTOR(((number_of_polynomial_evaluator_syndrome_pipelines)*(gf_2_m) - 1) downto 0);
 signal write_enable_new_value_syndrome : STD_LOGIC;
-signal write_enable_new_value_G : STD_LOGIC;
-signal write_enable_new_value_B : STD_LOGIC; 
+signal write_enable_new_value_s : STD_LOGIC;
+signal write_enable_new_value_v : STD_LOGIC; 
 signal write_enable_new_value_sigma : STD_LOGIC;
 signal write_enable_new_value_message : STD_LOGIC;
 signal write_enable_new_value_error : STD_LOGIC;
 signal write_enable_new_value_sigma_evaluated : STD_LOGIC;
 signal address_new_value_syndrome : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
-signal address_new_value_G : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
-signal address_new_value_B : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
+signal address_new_value_s : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
+signal address_new_value_v : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
 signal address_new_value_sigma : STD_LOGIC_VECTOR((size_number_of_errors + 1) downto 0);
 signal address_new_value_message : STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
 signal address_new_value_error : STD_LOGIC_VECTOR(((size_codeword) - 1) downto 0);
@@ -446,7 +446,7 @@ signal cycle_count : integer range 0 to 2000000000 := 0;
 
 begin
 
-test : mceliece_qd_goppa_decrypt_v3
+test : mceliece_qd_goppa_decrypt_v4
 	Generic Map(	
 		number_of_polynomial_evaluator_syndrome_pipelines => number_of_polynomial_evaluator_syndrome_pipelines,
 		polynomial_evaluator_syndrome_pipeline_size => polynomial_evaluator_syndrome_pipeline_size,
@@ -464,8 +464,8 @@ test : mceliece_qd_goppa_decrypt_v3
 		value_L => value_L,
 		value_syndrome => value_syndrome,
 		value_codeword => value_codeword,
-		value_G => value_G,
-		value_B => value_B,
+		value_s => value_s,
+		value_v => value_v,
 		value_sigma => value_sigma,
 		value_sigma_evaluated => value_sigma_evaluated,
 		syndrome_generation_finalized => syndrome_generation_finalized,
@@ -475,27 +475,27 @@ test : mceliece_qd_goppa_decrypt_v3
 		address_value_L => address_value_L,
 		address_value_syndrome => address_value_syndrome,
 		address_value_codeword => address_value_codeword,
-		address_value_G => address_value_G,
-		address_value_B => address_value_B,
+		address_value_s => address_value_s,
+		address_value_v => address_value_v,
 		address_value_sigma => address_value_sigma,
 		address_value_sigma_evaluated => address_value_sigma_evaluated,
 		new_value_syndrome => new_value_syndrome,
-		new_value_G => new_value_G,
-		new_value_B => new_value_B,
+		new_value_s => new_value_s,
+		new_value_v => new_value_v,
 		new_value_sigma => new_value_sigma,
 		new_value_message => new_value_message,
 		new_value_error => new_value_error,
 		new_value_sigma_evaluated => new_value_sigma_evaluated,
 		write_enable_new_value_syndrome => write_enable_new_value_syndrome,
-		write_enable_new_value_G => write_enable_new_value_G,
-		write_enable_new_value_B => write_enable_new_value_B,
+		write_enable_new_value_s => write_enable_new_value_s,
+		write_enable_new_value_v => write_enable_new_value_v,
 		write_enable_new_value_sigma => write_enable_new_value_sigma,
 		write_enable_new_value_message => write_enable_new_value_message,
 		write_enable_new_value_error => write_enable_new_value_error,
 		write_enable_new_value_sigma_evaluated => write_enable_new_value_sigma_evaluated,
 		address_new_value_syndrome => address_new_value_syndrome,
-		address_new_value_G => address_new_value_G,
-		address_new_value_B => address_new_value_B,
+		address_new_value_s => address_new_value_s,
+		address_new_value_v => address_new_value_v,
 		address_new_value_sigma => address_new_value_sigma,
 		address_new_value_message => address_new_value_message,
 		address_new_value_error => address_new_value_error,
@@ -697,7 +697,7 @@ mem_syndrome : entity work.ram_double(simple)
 		data_out_b => open
 	);
 	
-mem_G : entity work.ram_double(simple)
+mem_F : entity work.ram_double(simple)
 	Generic Map(
 		ram_address_size => size_number_of_errors + 2,
 		ram_word_size => gf_2_m,
@@ -707,16 +707,16 @@ mem_G : entity work.ram_double(simple)
 	)
 	Port Map(
 		data_in_a => (others => '0'),
-		data_in_b => new_value_G,
+		data_in_b => new_value_s,
 		rw_a => '0',
-		rw_b => write_enable_new_value_G,
+		rw_b => write_enable_new_value_s,
 		clk => clk,
 		rst => rst,
 		dump => '0',
-		address_a => address_value_G,
-		address_b => address_new_value_G,
+		address_a => address_value_s,
+		address_b => address_new_value_s,
 		rst_value => (others => '0'),
-		data_out_a => value_G,
+		data_out_a => value_s,
 		data_out_b => open
 	);
 	
@@ -730,16 +730,16 @@ mem_B : entity work.ram_double(simple)
 	)
 	Port Map(
 		data_in_a => (others => '0'),
-		data_in_b => new_value_B,
+		data_in_b => new_value_v,
 		rw_a => '0',
-		rw_b => write_enable_new_value_B,
+		rw_b => write_enable_new_value_v,
 		clk => clk,
 		rst => rst,
 		dump => '0',
-		address_a => address_value_B,
-		address_b => address_new_value_B,
+		address_a => address_value_v,
+		address_b => address_new_value_v,
 		rst_value => (others => '0'),
-		data_out_a => value_B,
+		data_out_a => value_v,
 		data_out_b => open
 	);
 	
@@ -775,8 +775,6 @@ while ( test_bench_finish /= '1') loop
 end loop;
 wait;
 end process;
-	
---clk <= not clk after PERIOD/2;
 
 process
 	variable i : integer; 
@@ -792,7 +790,7 @@ process
 		wait for PERIOD*2;
 		rst <= '0';
 		wait until syndrome_generation_finalized = '1';
-		syndrome_cycle_count := cycle_count;
+		syndrome_cycle_count := cycle_count - 2;
 		report "Circuit finish Syndrome = " & integer'image(syndrome_cycle_count/2) & " cycles";
 		wait until key_equation_finalized = '1';
 		key_equation_cycle_count := cycle_count - syndrome_cycle_count;

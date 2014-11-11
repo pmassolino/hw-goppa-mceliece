@@ -3,45 +3,30 @@
 -- Engineer: Pedro Maat C. Massolino
 -- 
 -- Create Date:    05/12/2012
--- Design Name:    Essentials 
--- Module Name:    RAM Double Bank
+-- Design Name:    Synth Double RAM 
+-- Module Name:    Synth Double RAM
 -- Project Name:   Essentials
 -- Target Devices: Any
 -- Tool versions: Xilinx ISE 13.3 WebPack
 --
 -- Description: 
 --
--- Circuit to simulate the behavior of a RAM Double Bank behavioral, where it can output
--- number_of_memories at once and have 2 interfaces, so it can read and write on the same cycle
--- Only used for tests.
+-- Circuit to simulate the behavior of a double synthesizable RAM.
 --
 -- The circuits parameters
 -- 
--- number_of_memories :
---
--- Number of memories in the RAM Double Bank
---
 -- ram_address_size :
--- Address size of the RAM Double Bank used on the circuit.
+--
+-- Address size of the synthesizable RAM used on the circuit.
 --
 -- ram_word_size :
--- The size of internal word on the RAM Double Bank.
 --
--- file_ram_word_size :
--- The size of the word used in the file to be loaded on the RAM Double Bank.(ARCH: FILE_LOAD)
+-- The size of internal word on the synthesizable RAM.
 --
--- load_file_name :
--- The name of file to be loaded.(ARCH: FILE_LOAD)
---
--- dump_file_name :
--- The name of the file to be used to dump the memory.
 --
 -- Dependencies:
 -- VHDL-93
 -- IEEE.NUMERIC_STD.ALL;
--- IEEE.STD_LOGIC_TEXTIO.ALL;
--- STD;
--- STD.TEXTIO.ALL;
 -- 
 -- Revision: 
 -- Revision 1.0

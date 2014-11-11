@@ -117,12 +117,12 @@ entity tb_syndrome_calculator_n_pipe_v5 is
 --		size_codeword : integer := 6;
 --		length_syndrome : integer := 8;
 --		size_syndrome : integer := 3;
---		file_memory_L : string := "mceliece\data_tests\L_qdgoppa_52_28_4_6.dat";
---		file_memory_h : string := "mceliece\data_tests\h_qdgoppa_52_28_4_6.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_qdgoppa_52_28_4_6.dat";
---		file_memory_syndrome : string := "mceliece\data_tests\syndrome_qdgoppa_52_28_4_6.dat";
---		file_memory_g_polynomial : string := "mceliece\data_tests\g_polynomial_qdgoppa_52_28_4_6.dat";
---		dump_file_memory_syndrome : string := "mceliece\data_tests\dump_syndrome_qdgoppa_52_28_4_6.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_qdgoppa_52_28_4_6.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_qdgoppa_52_28_4_6.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_qdgoppa_52_28_4_6.dat";
+--		file_memory_syndrome : string := "mceliece/data_tests/syndrome_qdgoppa_52_28_4_6.dat";
+--		file_memory_g_polynomial : string := "mceliece/data_tests/g_polynomial_qdgoppa_52_28_4_6.dat";
+--		dump_file_memory_syndrome : string := "mceliece/data_tests/dump_syndrome_qdgoppa_52_28_4_6.dat"
 				
 		-- GOPPA [2048, 1751, 27, 11] --
 
@@ -134,12 +134,12 @@ entity tb_syndrome_calculator_n_pipe_v5 is
 --		size_codeword : integer := 11;
 --		length_syndrome : integer := 54;
 --		size_syndrome : integer := 6;
---		file_memory_L : string := "mceliece\data_tests\L_goppa_2048_1751_27_11.dat";
---		file_memory_h : string := "mceliece\data_tests\h_goppa_2048_1751_27_11.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_goppa_2048_1751_27_11.dat";
---		file_memory_syndrome : string := "mceliece\data_tests\syndrome_goppa_2048_1751_27_11.dat";
---		file_memory_g_polynomial : string := "mceliece\data_tests\g_polynomial_goppa_2048_1751_27_11.dat";
---		dump_file_memory_syndrome : string := "mceliece\data_tests\dump_syndrome_goppa_2048_1751_27_11.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_goppa_2048_1751_27_11.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_goppa_2048_1751_27_11.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_goppa_2048_1751_27_11.dat";
+--		file_memory_syndrome : string := "mceliece/data_tests/syndrome_goppa_2048_1751_27_11.dat";
+--		file_memory_g_polynomial : string := "mceliece/data_tests/g_polynomial_goppa_2048_1751_27_11.dat";
+--		dump_file_memory_syndrome : string := "mceliece/data_tests/dump_syndrome_goppa_2048_1751_27_11.dat"
 
 		-- GOPPA [2048, 1498, 50, 11] --
 
@@ -151,12 +151,12 @@ entity tb_syndrome_calculator_n_pipe_v5 is
 --		size_codeword : integer := 11;
 --		length_syndrome : integer := 100;
 --		size_syndrome : integer := 7;
---		file_memory_L : string := "mceliece\data_tests\L_goppa_2048_1498_50_11.dat";
---		file_memory_h : string := "mceliece\data_tests\h_goppa_2048_1498_50_11.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_goppa_2048_1498_50_11.dat";
---		file_memory_syndrome : string := "mceliece\data_tests\syndrome_goppa_2048_1498_50_11.dat";
---		file_memory_g_polynomial : string := "mceliece\data_tests\g_polynomial_goppa_2048_1498_50_11.dat";
---		dump_file_memory_syndrome : string := "mceliece\data_tests\dump_syndrome_goppa_2048_1498_50_11.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_goppa_2048_1498_50_11.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_goppa_2048_1498_50_11.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_goppa_2048_1498_50_11.dat";
+--		file_memory_syndrome : string := "mceliece/data_tests/syndrome_goppa_2048_1498_50_11.dat";
+--		file_memory_g_polynomial : string := "mceliece/data_tests/g_polynomial_goppa_2048_1498_50_11.dat";
+--		dump_file_memory_syndrome : string := "mceliece/data_tests/dump_syndrome_goppa_2048_1498_50_11.dat"
 
 		-- GOPPA [3307, 2515, 66, 12] --
 
@@ -168,12 +168,12 @@ entity tb_syndrome_calculator_n_pipe_v5 is
 --		size_codeword : integer := 11;
 --		length_syndrome : integer := 100;
 --		size_syndrome : integer := 7;
---		file_memory_L : string := "mceliece\data_tests\L_goppa_2048_1498_50_11.dat";
---		file_memory_h : string := "mceliece\data_tests\h_goppa_2048_1498_50_11.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_goppa_2048_1498_50_11.dat";
---		file_memory_syndrome : string := "mceliece\data_tests\syndrome_goppa_2048_1498_50_11.dat";
---		file_memory_g_polynomial : string := "mceliece\data_tests\g_polynomial_goppa_2048_1498_50_11.dat";
---		dump_file_memory_syndrome : string := "mceliece\data_tests\dump_syndrome_goppa_2048_1498_50_11.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_goppa_2048_1498_50_11.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_goppa_2048_1498_50_11.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_goppa_2048_1498_50_11.dat";
+--		file_memory_syndrome : string := "mceliece/data_tests/syndrome_goppa_2048_1498_50_11.dat";
+--		file_memory_g_polynomial : string := "mceliece/data_tests/g_polynomial_goppa_2048_1498_50_11.dat";
+--		dump_file_memory_syndrome : string := "mceliece/data_tests/dump_syndrome_goppa_2048_1498_50_11.dat"
 
 		-- QD-GOPPA [2528, 2144, 32, 12] --
 
@@ -185,12 +185,12 @@ entity tb_syndrome_calculator_n_pipe_v5 is
 		size_codeword : integer := 12;
 		length_syndrome : integer := 64;
 		size_syndrome : integer := 7;
-		file_memory_L : string := "mceliece\data_tests\L_qdgoppa_2528_2144_32_12.dat";
-		file_memory_h : string := "mceliece\data_tests\h_qdgoppa_2528_2144_32_12.dat";
-		file_memory_codeword : string := "mceliece\data_tests\ciphertext_qdgoppa_2528_2144_32_12.dat";
-		file_memory_syndrome : string := "mceliece\data_tests\syndrome_qdgoppa_2528_2144_32_12.dat";
-		file_memory_g_polynomial : string := "mceliece\data_tests\g_polynomial_qdgoppa_2528_2144_32_12.dat";
-		dump_file_memory_syndrome : string := "mceliece\data_tests\dump_syndrome_qdgoppa_2528_2144_32_12.dat"
+		file_memory_L : string := "mceliece/data_tests/L_qdgoppa_2528_2144_32_12.dat";
+		file_memory_h : string := "mceliece/data_tests/h_qdgoppa_2528_2144_32_12.dat";
+		file_memory_codeword : string := "mceliece/data_tests/ciphertext_qdgoppa_2528_2144_32_12.dat";
+		file_memory_syndrome : string := "mceliece/data_tests/syndrome_qdgoppa_2528_2144_32_12.dat";
+		file_memory_g_polynomial : string := "mceliece/data_tests/g_polynomial_qdgoppa_2528_2144_32_12.dat";
+		dump_file_memory_syndrome : string := "mceliece/data_tests/dump_syndrome_qdgoppa_2528_2144_32_12.dat"
 
 		-- QD-GOPPA [2816, 2048, 64, 12] --
 
@@ -202,12 +202,12 @@ entity tb_syndrome_calculator_n_pipe_v5 is
 --		size_codeword : integer := 12;
 --		length_syndrome : integer := 128;
 --		size_syndrome : integer := 7;
---		file_memory_L : string := "mceliece\data_tests\L_qdgoppa_2816_2048_64_12.dat";
---		file_memory_h : string := "mceliece\data_tests\h_qdgoppa_2816_2048_64_12.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_qdgoppa_2816_2048_64_12.dat";
---		file_memory_syndrome : string := "mceliece\data_tests\syndrome_qdgoppa_2816_2048_64_12.dat";
---		file_memory_g_polynomial : string := "mceliece\data_tests\g_polynomial_qdgoppa_2816_2048_64_12.dat";
---		dump_file_memory_syndrome : string := "mceliece\data_tests\dump_syndrome_qdgoppa_2816_2048_64_12.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_qdgoppa_2816_2048_64_12.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_qdgoppa_2816_2048_64_12.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_qdgoppa_2816_2048_64_12.dat";
+--		file_memory_syndrome : string := "mceliece/data_tests/syndrome_qdgoppa_2816_2048_64_12.dat";
+--		file_memory_g_polynomial : string := "mceliece/data_tests/g_polynomial_qdgoppa_2816_2048_64_12.dat";
+--		dump_file_memory_syndrome : string := "mceliece/data_tests/dump_syndrome_qdgoppa_2816_2048_64_12.dat"
 
 		-- QD-GOPPA [3328, 2560, 64, 12] --
 
@@ -219,12 +219,12 @@ entity tb_syndrome_calculator_n_pipe_v5 is
 --		size_codeword : integer := 12;
 --		length_syndrome : integer := 128;
 --		size_syndrome : integer := 7;
---		file_memory_L : string := "mceliece\data_tests\L_qdgoppa_3328_2560_64_12.dat";
---		file_memory_h : string := "mceliece\data_tests\h_qdgoppa_3328_2560_64_12.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_qdgoppa_3328_2560_64_12.dat";
---		file_memory_syndrome : string := "mceliece\data_tests\syndrome_qdgoppa_3328_2560_64_12.dat";
---		file_memory_g_polynomial : string := "mceliece\data_tests\g_polynomial_qdgoppa_3328_2560_64_12.dat";
---		dump_file_memory_syndrome : string := "mceliece\data_tests\dump_syndrome_qdgoppa_3328_2560_64_12.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_qdgoppa_3328_2560_64_12.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_qdgoppa_3328_2560_64_12.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_qdgoppa_3328_2560_64_12.dat";
+--		file_memory_syndrome : string := "mceliece/data_tests/syndrome_qdgoppa_3328_2560_64_12.dat";
+--		file_memory_g_polynomial : string := "mceliece/data_tests/g_polynomial_qdgoppa_3328_2560_64_12.dat";
+--		dump_file_memory_syndrome : string := "mceliece/data_tests/dump_syndrome_qdgoppa_3328_2560_64_12.dat"
 
 		-- QD-GOPPA [7296, 5632, 128, 13] --
 
@@ -236,12 +236,12 @@ entity tb_syndrome_calculator_n_pipe_v5 is
 --		size_codeword : integer := 13;
 --		length_syndrome : integer := 256;
 --		size_syndrome : integer := 8;
---		file_memory_L : string := "mceliece\data_tests\L_qdgoppa_7296_5632_128_13.dat";
---		file_memory_h : string := "mceliece\data_tests\h_qdgoppa_7296_5632_128_13.dat";
---		file_memory_codeword : string := "mceliece\data_tests\ciphertext_qdgoppa_7296_5632_128_13.dat";
---		file_memory_syndrome : string := "mceliece\data_tests\syndrome_qdgoppa_7296_5632_128_13.dat";
---		file_memory_g_polynomial : string := "mceliece\data_tests\g_polynomial_qdgoppa_7296_5632_128_13.dat";
---		dump_file_memory_syndrome : string := "mceliece\data_tests\dump_syndrome_qdgoppa_7296_5632_128_13.dat"
+--		file_memory_L : string := "mceliece/data_tests/L_qdgoppa_7296_5632_128_13.dat";
+--		file_memory_h : string := "mceliece/data_tests/h_qdgoppa_7296_5632_128_13.dat";
+--		file_memory_codeword : string := "mceliece/data_tests/ciphertext_qdgoppa_7296_5632_128_13.dat";
+--		file_memory_syndrome : string := "mceliece/data_tests/syndrome_qdgoppa_7296_5632_128_13.dat";
+--		file_memory_g_polynomial : string := "mceliece/data_tests/g_polynomial_qdgoppa_7296_5632_128_13.dat";
+--		dump_file_memory_syndrome : string := "mceliece/data_tests/dump_syndrome_qdgoppa_7296_5632_128_13.dat"
 	);
 end tb_syndrome_calculator_n_pipe_v5;
 
@@ -610,7 +610,7 @@ process
 		wait for PERIOD*2;
 		rst <= '0';
 		wait until computation_finalized = '1';
-		report "Circuit finish = " & integer'image(cycle_count/2) & " cycles";
+		report "Circuit finish = " & integer'image((cycle_count - 2)/2) & " cycles";
 		wait for PERIOD;
 		i := 0;
 		while (i < (length_syndrome)) loop

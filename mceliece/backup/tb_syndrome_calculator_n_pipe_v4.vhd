@@ -610,7 +610,7 @@ process
 		wait for PERIOD*2;
 		rst <= '0';
 		wait until computation_finalized = '1';
-		report "Circuit finish = " & integer'image(cycle_count/2) & " cycles";
+		report "Circuit finish = " & integer'image((cycle_count - 2)/2) & " cycles";
 		wait for PERIOD;
 		i := 0;
 		while (i < (length_syndrome)) loop

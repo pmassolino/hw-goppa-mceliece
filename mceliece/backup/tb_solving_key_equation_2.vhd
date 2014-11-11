@@ -402,7 +402,7 @@ process
 		wait for PERIOD*2;
 		rst <= '0';
 		wait until key_equation_found = '1';
-		report "Circuit finish = " & integer'image(cycle_count/2) & " cycles";
+		report "Circuit finish = " & integer'image((cycle_count - 2)/2) & " cycles";
 		wait for PERIOD;
 		i := 0;
 		while (i < (final_degree + 1)) loop

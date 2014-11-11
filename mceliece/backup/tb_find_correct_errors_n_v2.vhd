@@ -122,14 +122,14 @@ Generic(
 --		size_sigma_degree : integer := 2;
 --		length_support_elements: integer := 52;
 --		size_support_elements : integer := 6;
---		x_memory_file : string := "mceliece\data_tests\L_classic_qdgoppa_52_28_4_6.dat";
---		sigma_memory_file : string := "mceliece\data_tests\sigma_classic_qdgoppa_52_28_4_6.dat";
---		resp_memory_file : string := "mceliece\data_tests\sigma(L)_classic_qdgoppa_52_28_4_6.dat";
---		dump_acc_memory_file : string := "mceliece\data_tests\dump_sigma(L)_classic_qdgoppa_52_28_4_6.dat";
---		codeword_memory_file : string := "mceliece\data_tests\ciphertext_classic_qdgoppa_52_28_4_6.dat";
---		message_memory_file : string := "mceliece\data_tests\plaintext_classic_qdgoppa_52_28_4_6.dat";
---		dump_codeword_memory_file : string := "mceliece\data_tests\dump_ciphertext_classic_qdgoppa_52_28_4_6.dat";
---		dump_error_memory_file : string := "mceliece\data_tests\dump_error_classic_qdgoppa_52_28_4_6.dat"			
+--		x_memory_file : string := "mceliece/data_tests/L_classic_qdgoppa_52_28_4_6.dat";
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_classic_qdgoppa_52_28_4_6.dat";
+--		resp_memory_file : string := "mceliece/data_tests/sigma(L)_classic_qdgoppa_52_28_4_6.dat";
+--		dump_acc_memory_file : string := "mceliece/data_tests/dump_sigma(L)_classic_qdgoppa_52_28_4_6.dat";
+--		codeword_memory_file : string := "mceliece/data_tests/ciphertext_classic_qdgoppa_52_28_4_6.dat";
+--		message_memory_file : string := "mceliece/data_tests/plaintext_classic_qdgoppa_52_28_4_6.dat";
+--		dump_codeword_memory_file : string := "mceliece/data_tests/dump_ciphertext_classic_qdgoppa_52_28_4_6.dat";
+--		dump_error_memory_file : string := "mceliece/data_tests/dump_error_classic_qdgoppa_52_28_4_6.dat"			
 		
 		-- GOPPA [2048, 1751, 27, 11] --
 		
@@ -141,14 +141,14 @@ Generic(
 --		size_sigma_degree : integer := 5;
 --		length_support_elements: integer := 2048;
 --		size_support_elements : integer := 11;
---		x_memory_file : string := "mceliece\data_tests\L_goppa_2048_1751_27_11.dat";
---		sigma_memory_file : string := "mceliece\data_tests\sigma_goppa_2048_1751_27_11.dat";
---		resp_memory_file : string := "mceliece\data_tests\sigma(L)_goppa_2048_1751_27_11.dat";
---		dump_acc_memory_file : string := "mceliece\data_tests\dump_sigma(L)_goppa_2048_1751_27_11.dat";
---		codeword_memory_file : string := "mceliece\data_tests\ciphertext_goppa_2048_1751_27_11.dat";
---		message_memory_file : string := "mceliece\data_tests\plaintext_goppa_2048_1751_27_11.dat";
---		dump_codeword_memory_file : string := "mceliece\data_tests\dump_ciphertext_goppa_2048_1751_27_11.dat";
---		dump_error_memory_file : string := "mceliece\data_tests\dump_error_goppa_2048_1751_27_11.dat"	
+--		x_memory_file : string := "mceliece/data_tests/L_goppa_2048_1751_27_11.dat";
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_goppa_2048_1751_27_11.dat";
+--		resp_memory_file : string := "mceliece/data_tests/sigma(L)_goppa_2048_1751_27_11.dat";
+--		dump_acc_memory_file : string := "mceliece/data_tests/dump_sigma(L)_goppa_2048_1751_27_11.dat";
+--		codeword_memory_file : string := "mceliece/data_tests/ciphertext_goppa_2048_1751_27_11.dat";
+--		message_memory_file : string := "mceliece/data_tests/plaintext_goppa_2048_1751_27_11.dat";
+--		dump_codeword_memory_file : string := "mceliece/data_tests/dump_ciphertext_goppa_2048_1751_27_11.dat";
+--		dump_error_memory_file : string := "mceliece/data_tests/dump_error_goppa_2048_1751_27_11.dat"	
 		
 		-- GOPPA [2048, 1498, 50, 11] --
 		
@@ -160,14 +160,14 @@ Generic(
 --		size_sigma_degree : integer := 6;
 --		length_support_elements: integer := 2048;
 --		size_support_elements : integer := 11;
---		x_memory_file : string := "mceliece\data_tests\L_goppa_2048_1498_50_11.dat";
---		sigma_memory_file : string := "mceliece\data_tests\sigma_goppa_2048_1498_50_11.dat";
---		resp_memory_file : string := "mceliece\data_tests\sigma(L)_goppa_2048_1498_50_11.dat";
---		dump_acc_memory_file : string := "mceliece\data_tests\dump_sigma(L)_goppa_2048_1498_50_11.dat";
---		codeword_memory_file : string := "mceliece\data_tests\ciphertext_goppa_2048_1498_50_11.dat";
---		message_memory_file : string := "mceliece\data_tests\plaintext_goppa_2048_1498_50_11.dat";
---		dump_codeword_memory_file : string := "mceliece\data_tests\dump_ciphertext_goppa_2048_1498_50_11.dat";
---		dump_error_memory_file : string := "mceliece\data_tests\dump_error_goppa_2048_1498_50_11.dat"
+--		x_memory_file : string := "mceliece/data_tests/L_goppa_2048_1498_50_11.dat";
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_goppa_2048_1498_50_11.dat";
+--		resp_memory_file : string := "mceliece/data_tests/sigma(L)_goppa_2048_1498_50_11.dat";
+--		dump_acc_memory_file : string := "mceliece/data_tests/dump_sigma(L)_goppa_2048_1498_50_11.dat";
+--		codeword_memory_file : string := "mceliece/data_tests/ciphertext_goppa_2048_1498_50_11.dat";
+--		message_memory_file : string := "mceliece/data_tests/plaintext_goppa_2048_1498_50_11.dat";
+--		dump_codeword_memory_file : string := "mceliece/data_tests/dump_ciphertext_goppa_2048_1498_50_11.dat";
+--		dump_error_memory_file : string := "mceliece/data_tests/dump_error_goppa_2048_1498_50_11.dat"
 
 		-- GOPPA [3307, 2515, 66, 12] --
 		
@@ -179,14 +179,14 @@ Generic(
 --		size_sigma_degree : integer := 7;
 --		length_support_elements: integer := 3307;
 --		size_support_elements : integer := 12;
---		x_memory_file : string := "mceliece\data_tests\L_goppa_3307_2515_66_12.dat";
---		sigma_memory_file : string := "mceliece\data_tests\sigma_goppa_3307_2515_66_12.dat";
---		resp_memory_file : string := "mceliece\data_tests\sigma(L)_goppa_3307_2515_66_12.dat";
---		dump_acc_memory_file : string := "mceliece\data_tests\dump_sigma(L)_goppa_3307_2515_66_12.dat";
---		codeword_memory_file : string := "mceliece\data_tests\ciphertext_goppa_3307_2515_66_12.dat";
---		message_memory_file : string := "mceliece\data_tests\plaintext_goppa_3307_2515_66_12.dat";
---		dump_codeword_memory_file : string := "mceliece\data_tests\dump_ciphertext_goppa_3307_2515_66_12.dat";
---		dump_error_memory_file : string := "mceliece\data_tests\dump_error_goppa_3307_2515_66_12.dat"
+--		x_memory_file : string := "mceliece/data_tests/L_goppa_3307_2515_66_12.dat";
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_goppa_3307_2515_66_12.dat";
+--		resp_memory_file : string := "mceliece/data_tests/sigma(L)_goppa_3307_2515_66_12.dat";
+--		dump_acc_memory_file : string := "mceliece/data_tests/dump_sigma(L)_goppa_3307_2515_66_12.dat";
+--		codeword_memory_file : string := "mceliece/data_tests/ciphertext_goppa_3307_2515_66_12.dat";
+--		message_memory_file : string := "mceliece/data_tests/plaintext_goppa_3307_2515_66_12.dat";
+--		dump_codeword_memory_file : string := "mceliece/data_tests/dump_ciphertext_goppa_3307_2515_66_12.dat";
+--		dump_error_memory_file : string := "mceliece/data_tests/dump_error_goppa_3307_2515_66_12.dat"
 		
 		-- QD-GOPPA [2528, 2144, 32, 12] --
 		
@@ -198,14 +198,14 @@ Generic(
 --		size_sigma_degree : integer := 6;
 --		length_support_elements: integer := 2528;
 --		size_support_elements : integer := 12;
---		x_memory_file : string := "mceliece\data_tests\L_qdgoppa_2528_2144_32_12.dat";
---		sigma_memory_file : string := "mceliece\data_tests\sigma_qdgoppa_2528_2144_32_12.dat";
---		resp_memory_file : string := "mceliece\data_tests\sigma(L)_qdgoppa_2528_2144_32_12.dat";
---		dump_acc_memory_file : string := "mceliece\data_tests\dump_sigma(L)_qdgoppa_2528_2144_32_12.dat";
---		codeword_memory_file : string := "mceliece\data_tests\ciphertext_qdgoppa_2528_2144_32_12.dat";
---		message_memory_file : string := "mceliece\data_tests\plaintext_qdgoppa_2528_2144_32_12.dat";
---		dump_codeword_memory_file : string := "mceliece\data_tests\dump_ciphertext_qdgoppa_2528_2144_32_12.dat";
---		dump_error_memory_file : string := "mceliece\data_tests\dump_error_qdgoppa_2528_2144_32_12.dat"
+--		x_memory_file : string := "mceliece/data_tests/L_qdgoppa_2528_2144_32_12.dat";
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_qdgoppa_2528_2144_32_12.dat";
+--		resp_memory_file : string := "mceliece/data_tests/sigma(L)_qdgoppa_2528_2144_32_12.dat";
+--		dump_acc_memory_file : string := "mceliece/data_tests/dump_sigma(L)_qdgoppa_2528_2144_32_12.dat";
+--		codeword_memory_file : string := "mceliece/data_tests/ciphertext_qdgoppa_2528_2144_32_12.dat";
+--		message_memory_file : string := "mceliece/data_tests/plaintext_qdgoppa_2528_2144_32_12.dat";
+--		dump_codeword_memory_file : string := "mceliece/data_tests/dump_ciphertext_qdgoppa_2528_2144_32_12.dat";
+--		dump_error_memory_file : string := "mceliece/data_tests/dump_error_qdgoppa_2528_2144_32_12.dat"
 		
 		-- QD-GOPPA [2816, 2048, 64, 12] --
 		
@@ -217,14 +217,14 @@ Generic(
 --		size_sigma_degree : integer := 7;
 --		length_support_elements: integer := 2816;
 --		size_support_elements : integer := 12;
---		x_memory_file : string := "mceliece\data_tests\L_qdgoppa_2816_2048_64_12.dat";
---		sigma_memory_file : string := "mceliece\data_tests\sigma_qdgoppa_2816_2048_64_12.dat";
---		resp_memory_file : string := "mceliece\data_tests\sigma(L)_qdgoppa_2816_2048_64_12.dat";
---		dump_acc_memory_file : string := "mceliece\data_tests\dump_sigma(L)_qdgoppa_2816_2048_64_12.dat";
---		codeword_memory_file : string := "mceliece\data_tests\ciphertext_qdgoppa_2816_2048_64_12.dat";
---		message_memory_file : string := "mceliece\data_tests\plaintext_qdgoppa_2816_2048_64_12.dat";
---		dump_codeword_memory_file : string := "mceliece\data_tests\dump_ciphertext_qdgoppa_2816_2048_64_12.dat";
---		dump_error_memory_file : string := "mceliece\data_tests\dump_error_qdgoppa_2816_2048_64_12.dat"
+--		x_memory_file : string := "mceliece/data_tests/L_qdgoppa_2816_2048_64_12.dat";
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_qdgoppa_2816_2048_64_12.dat";
+--		resp_memory_file : string := "mceliece/data_tests/sigma(L)_qdgoppa_2816_2048_64_12.dat";
+--		dump_acc_memory_file : string := "mceliece/data_tests/dump_sigma(L)_qdgoppa_2816_2048_64_12.dat";
+--		codeword_memory_file : string := "mceliece/data_tests/ciphertext_qdgoppa_2816_2048_64_12.dat";
+--		message_memory_file : string := "mceliece/data_tests/plaintext_qdgoppa_2816_2048_64_12.dat";
+--		dump_codeword_memory_file : string := "mceliece/data_tests/dump_ciphertext_qdgoppa_2816_2048_64_12.dat";
+--		dump_error_memory_file : string := "mceliece/data_tests/dump_error_qdgoppa_2816_2048_64_12.dat"
 		
 		-- QD-GOPPA [3328, 2560, 64, 12] --
 		
@@ -236,14 +236,14 @@ Generic(
 --		size_sigma_degree : integer := 7;
 --		length_support_elements: integer := 3328;
 --		size_support_elements : integer := 12;
---		x_memory_file : string := "mceliece\data_tests\L_qdgoppa_3328_2560_64_12.dat";
---		sigma_memory_file : string := "mceliece\data_tests\sigma_qdgoppa_3328_2560_64_12.dat";
---		resp_memory_file : string := "mceliece\data_tests\sigma(L)_qdgoppa_3328_2560_64_12.dat";
---		dump_acc_memory_file : string := "mceliece\data_tests\dump_sigma(L)_qdgoppa_3328_2560_64_12.dat";
---		codeword_memory_file : string := "mceliece\data_tests\ciphertext_qdgoppa_3328_2560_64_12.dat";
---		message_memory_file : string := "mceliece\data_tests\plaintext_qdgoppa_3328_2560_64_12.dat";
---		dump_codeword_memory_file : string := "mceliece\data_tests\dump_ciphertext_qdgoppa_3328_2560_64_12.dat";
---		dump_error_memory_file : string := "mceliece\data_tests\dump_error_qdgoppa_3328_2560_64_12.dat"
+--		x_memory_file : string := "mceliece/data_tests/L_qdgoppa_3328_2560_64_12.dat";
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_qdgoppa_3328_2560_64_12.dat";
+--		resp_memory_file : string := "mceliece/data_tests/sigma(L)_qdgoppa_3328_2560_64_12.dat";
+--		dump_acc_memory_file : string := "mceliece/data_tests/dump_sigma(L)_qdgoppa_3328_2560_64_12.dat";
+--		codeword_memory_file : string := "mceliece/data_tests/ciphertext_qdgoppa_3328_2560_64_12.dat";
+--		message_memory_file : string := "mceliece/data_tests/plaintext_qdgoppa_3328_2560_64_12.dat";
+--		dump_codeword_memory_file : string := "mceliece/data_tests/dump_ciphertext_qdgoppa_3328_2560_64_12.dat";
+--		dump_error_memory_file : string := "mceliece/data_tests/dump_error_qdgoppa_3328_2560_64_12.dat"
 		
 		-- QD-GOPPA [7296, 5632, 128, 13] --
 		
@@ -255,14 +255,14 @@ Generic(
 		size_sigma_degree : integer := 8;
 		length_support_elements: integer := 7296;
 		size_support_elements : integer := 13;
-		x_memory_file : string := "mceliece\data_tests\L_qdgoppa_7296_5632_128_13.dat";
-		sigma_memory_file : string := "mceliece\data_tests\sigma_qdgoppa_7296_5632_128_13.dat";
-		resp_memory_file : string := "mceliece\data_tests\sigma(L)_qdgoppa_7296_5632_128_13.dat";
-		dump_acc_memory_file : string := "mceliece\data_tests\dump_sigma(L)_qdgoppa_7296_5632_128_13.dat";
-		codeword_memory_file : string := "mceliece\data_tests\ciphertext_qdgoppa_7296_5632_128_13.dat";
-		message_memory_file : string := "mceliece\data_tests\plaintext_qdgoppa_7296_5632_128_13.dat";
-		dump_codeword_memory_file : string := "mceliece\data_tests\dump_ciphertext_qdgoppa_7296_5632_128_13.dat";
-		dump_error_memory_file : string := "mceliece\data_tests\dump_error_qdgoppa_7296_5632_128_13.dat"
+		x_memory_file : string := "mceliece/data_tests/L_qdgoppa_7296_5632_128_13.dat";
+		sigma_memory_file : string := "mceliece/data_tests/sigma_qdgoppa_7296_5632_128_13.dat";
+		resp_memory_file : string := "mceliece/data_tests/sigma(L)_qdgoppa_7296_5632_128_13.dat";
+		dump_acc_memory_file : string := "mceliece/data_tests/dump_sigma(L)_qdgoppa_7296_5632_128_13.dat";
+		codeword_memory_file : string := "mceliece/data_tests/ciphertext_qdgoppa_7296_5632_128_13.dat";
+		message_memory_file : string := "mceliece/data_tests/plaintext_qdgoppa_7296_5632_128_13.dat";
+		dump_codeword_memory_file : string := "mceliece/data_tests/dump_ciphertext_qdgoppa_7296_5632_128_13.dat";
+		dump_error_memory_file : string := "mceliece/data_tests/dump_error_qdgoppa_7296_5632_128_13.dat"
 		
 );
 end tb_find_correct_errors_n_v2;
@@ -667,8 +667,6 @@ end loop;
 wait;
 end process;
 
---clk <= not clk after PERIOD/2;
-
 test_acc_address <= address_value_acc when correction_finalized = '0' else
 	true_acc_address;
 
@@ -683,10 +681,10 @@ process
 		rst <= '1';
 		error_acc <= '0';
 		error_message <= '0';
-		wait for PERIOD*4;
+		wait for PERIOD*2;
 		rst <= '0';
 		wait until correction_finalized = '1';
-		report "Circuit finish = " & integer'image(cycle_count/2) & " cycles";
+		report "Circuit finish = " & integer'image((cycle_count - 2)/2) & " cycles";
 		wait for PERIOD;
 		i := 0;
 		while (i < (length_support_elements)) loop

@@ -74,72 +74,72 @@ entity tb_solving_key_equation_1_v2 is
 		gf_2_m : integer range 1 to 20 := 6;
 		final_degree : integer := 4;
 		size_final_degree : integer := 2;
-		sigma_memory_file : string := "mceliece\data_tests\sigma_qdgoppa_52_28_4_6.dat";
-		dump_sigma_memory_file : string := "mceliece\data_tests\dump_sigma_qdgoppa_52_28_4_6.dat";
-		syndrome_memory_file : string := "mceliece\data_tests\syndrome_qdgoppa_52_28_4_6.dat"
+		sigma_memory_file : string := "mceliece/data_tests/sigma_qdgoppa_52_28_4_6.dat";
+		dump_sigma_memory_file : string := "mceliece/data_tests/dump_sigma_qdgoppa_52_28_4_6.dat";
+		syndrome_memory_file : string := "mceliece/data_tests/syndrome_qdgoppa_52_28_4_6.dat"
 
 		-- GOPPA [2048, 1751, 27, 11] --
 		
 --		gf_2_m : integer range 1 to 20 := 11;
 --		final_degree : integer := 27;
 --		size_final_degree : integer := 5;
---		sigma_memory_file : string := "mceliece\data_tests\sigma_goppa_2048_1751_27_11.dat";
---		dump_sigma_memory_file : string := "mceliece\data_tests\dump_sigma_goppa_2048_1751_27_11.dat";
---		syndrome_memory_file : string := "mceliece\data_tests\syndrome_goppa_2048_1751_27_11.dat"
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_goppa_2048_1751_27_11.dat";
+--		dump_sigma_memory_file : string := "mceliece/data_tests/dump_sigma_goppa_2048_1751_27_11.dat";
+--		syndrome_memory_file : string := "mceliece/data_tests/syndrome_goppa_2048_1751_27_11.dat"
 		
 		-- GOPPA [2048, 1498, 50, 11] --
 		
 --		gf_2_m : integer range 1 to 20 := 11;
 --		final_degree : integer := 50;
 --		size_final_degree : integer := 6;
---		sigma_memory_file : string := "mceliece\data_tests\sigma_goppa_2048_1498_50_11.dat";
---		dump_sigma_memory_file : string := "mceliece\data_tests\dump_sigma_goppa_2048_1498_50_11.dat";
---		syndrome_memory_file : string := "mceliece\data_tests\syndrome_goppa_2048_1498_50_11.dat"
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_goppa_2048_1498_50_11.dat";
+--		dump_sigma_memory_file : string := "mceliece/data_tests/dump_sigma_goppa_2048_1498_50_11.dat";
+--		syndrome_memory_file : string := "mceliece/data_tests/syndrome_goppa_2048_1498_50_11.dat"
 		
 		-- GOPPA [3307, 2515, 66, 12] --
 		
 --		gf_2_m : integer range 1 to 20 := 12;
 --		final_degree : integer := 66;
 --		size_final_degree : integer := 7;
---		sigma_memory_file : string := "mceliece\data_tests\sigma_goppa_3307_2515_66_12.dat";
---		dump_sigma_memory_file : string := "mceliece\data_tests\dump_sigma_goppa_3307_2515_66_12.dat";
---		syndrome_memory_file : string := "mceliece\data_tests\syndrome_goppa_3307_2515_66_12.dat"
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_goppa_3307_2515_66_12.dat";
+--		dump_sigma_memory_file : string := "mceliece/data_tests/dump_sigma_goppa_3307_2515_66_12.dat";
+--		syndrome_memory_file : string := "mceliece/data_tests/syndrome_goppa_3307_2515_66_12.dat"
 
 		-- QD-GOPPA [2528, 2144, 32, 12] --
 
 --		gf_2_m : integer range 1 to 20 := 12;
 --		final_degree : integer := 32;
 --		size_final_degree : integer := 5;
---		sigma_memory_file : string := "mceliece\data_tests\sigma_qdgoppa_2528_2144_32_12.dat";
---		dump_sigma_memory_file : string := "mceliece\data_tests\dump_sigma_qdgoppa_2528_2144_32_12.dat";
---		syndrome_memory_file : string := "mceliece\data_tests\syndrome_qdgoppa_2528_2144_32_12.dat"
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_qdgoppa_2528_2144_32_12.dat";
+--		dump_sigma_memory_file : string := "mceliece/data_tests/dump_sigma_qdgoppa_2528_2144_32_12.dat";
+--		syndrome_memory_file : string := "mceliece/data_tests/syndrome_qdgoppa_2528_2144_32_12.dat"
 
 		-- QD-GOPPA [2816, 2048, 64, 12] --
 
 --		gf_2_m : integer range 1 to 20 := 12;
 --		final_degree : integer := 64;
 --		size_final_degree : integer := 6;
---		sigma_memory_file : string := "mceliece\data_tests\sigma_qdgoppa_2816_2048_64_12.dat";
---		dump_sigma_memory_file : string := "mceliece\data_tests\dump_sigma_qdgoppa_2816_2048_64_12.dat";
---		syndrome_memory_file : string := "mceliece\data_tests\syndrome_qdgoppa_2816_2048_64_12.dat"
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_qdgoppa_2816_2048_64_12.dat";
+--		dump_sigma_memory_file : string := "mceliece/data_tests/dump_sigma_qdgoppa_2816_2048_64_12.dat";
+--		syndrome_memory_file : string := "mceliece/data_tests/syndrome_qdgoppa_2816_2048_64_12.dat"
 
 		-- QD-GOPPA [3328, 2560, 64, 12] --
 
 --		gf_2_m : integer range 1 to 20 := 12;
 --		final_degree : integer := 64;
 --		size_final_degree : integer := 6;
---		sigma_memory_file : string := "mceliece\data_tests\sigma_qdgoppa_3328_2560_64_12.dat";
---		dump_sigma_memory_file : string := "mceliece\data_tests\dump_sigma_qdgoppa_3328_2560_64_12.dat";
---		syndrome_memory_file : string := "mceliece\data_tests\syndrome_qdgoppa_3328_2560_64_12.dat"
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_qdgoppa_3328_2560_64_12.dat";
+--		dump_sigma_memory_file : string := "mceliece/data_tests/dump_sigma_qdgoppa_3328_2560_64_12.dat";
+--		syndrome_memory_file : string := "mceliece/data_tests/syndrome_qdgoppa_3328_2560_64_12.dat"
 
 		-- QD-GOPPA [7296, 5632, 128, 13] --
 
 --		gf_2_m : integer range 1 to 20 := 13;
 --		final_degree : integer := 128;
 --		size_final_degree : integer := 7;
---		sigma_memory_file : string := "mceliece\data_tests\sigma_qdgoppa_7296_5632_128_13.dat";
---		dump_sigma_memory_file : string := "mceliece\data_tests\dump_sigma_qdgoppa_7296_5632_128_13.dat";
---		syndrome_memory_file : string := "mceliece\data_tests\syndrome_qdgoppa_7296_5632_128_13.dat"
+--		sigma_memory_file : string := "mceliece/data_tests/sigma_qdgoppa_7296_5632_128_13.dat";
+--		dump_sigma_memory_file : string := "mceliece/data_tests/dump_sigma_qdgoppa_7296_5632_128_13.dat";
+--		syndrome_memory_file : string := "mceliece/data_tests/syndrome_qdgoppa_7296_5632_128_13.dat"
 
 	);
 end tb_solving_key_equation_1_v2;
@@ -359,7 +359,7 @@ process
 		wait for PERIOD*2;
 		rst <= '0';
 		wait until key_equation_found = '1';
-		report "Circuit finish = " & integer'image(cycle_count/2) & " cycles";
+		report "Circuit finish = " & integer'image((cycle_count - 2)/2) & " cycles";
 		wait for PERIOD;
 		i := 0;
 		while (i < (final_degree + 1)) loop

@@ -47,13 +47,18 @@ component ram
 	Generic (
 		ram_address_size : integer;
 		ram_word_size : integer;
-		file_name : string := "mceliece/util/ram.dat"
+		file_ram_word_size : integer;
+		load_file_name : string := "mceliece/util/ram.dat";
+		dump_file_name : string := "ram.dat"
 	);
 	Port (
 		data_in : in STD_LOGIC_VECTOR ((ram_word_size - 1) downto 0);
 		rw : in STD_LOGIC;
 		clk : in STD_LOGIC;
+		rst : in STD_LOGIC;
+		dump : in STD_LOGIC; 
 		address : in STD_LOGIC_VECTOR ((ram_address_size - 1) downto 0);
+		rst_value : in STD_LOGIC_VECTOR ((ram_word_size - 1) downto 0);
 		data_out : out STD_LOGIC_VECTOR ((ram_word_size - 1) downto 0)
 	);
 end component;
@@ -73,13 +78,19 @@ clk <= not clk after PERIOD;
 test: ram
 	Generic Map(
 		ram_address_size => ram_address,
-		ram_word_size => ram_word
+		ram_word_size => ram_word,
+		file_ram_word_size => ram_word,
+		load_file_name => "mceliece/util/ram.dat",
+		dump_file_name => ""
 	)
 	Port Map(
 		data_in => data_in,
 		rw => rw,
 		clk => clk,
+		rst => '0',
+		dump => '0',
 		address => address,
+		rst_value => (others => '0'),
 		data_out => data_out
 	);
 

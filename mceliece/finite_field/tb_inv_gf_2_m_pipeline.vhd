@@ -46,10 +46,10 @@ use STD.TEXTIO.ALL;
 
 entity tb_inv_gf_2_m_pipeline is
 	Generic(
-		gf_2_m : integer range 2 to 20 := 20;
+		gf_2_m : integer range 2 to 20 := 13;
 		PERIOD : time := 10 ns;
 	
-		-- Goppa	--
+		-- Software	--
 	
 		test_memory_file_gf_2_2 : string := "mceliece/finite_field_tests/inv_gf_2_2_x2_x1_1.dat";
 		test_memory_file_gf_2_3 : string := "mceliece/finite_field_tests/inv_gf_2_3_x3_x1_1.dat";

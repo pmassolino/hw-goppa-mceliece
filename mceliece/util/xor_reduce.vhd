@@ -40,8 +40,8 @@ entity xor_reduce is
 		number_of_vectors : integer range 2 to integer'high := 2
 	);
 	Port(
-		a : STD_LOGIC_VECTOR(((size_vector)*(number_of_vectors) - 1) downto 0);
-		o : STD_LOGIC_VECTOR((size_vector - 1) downto 0)
+		a : in STD_LOGIC_VECTOR(((size_vector)*(number_of_vectors) - 1) downto 0);
+		o : out STD_LOGIC_VECTOR((size_vector - 1) downto 0)
 	);
 end xor_reduce;
 

@@ -793,7 +793,7 @@ process
 		wait for PERIOD*2;
 		rst <= '0';
 		wait until syndrome_generation_finalized = '1';
-		syndrome_cycle_count := cycle_count;
+		syndrome_cycle_count := cycle_count - 2;
 		report "Circuit finish Syndrome = " & integer'image(syndrome_cycle_count/2) & " cycles";
 		wait until key_equation_finalized = '1';
 		key_equation_cycle_count := cycle_count - syndrome_cycle_count;
