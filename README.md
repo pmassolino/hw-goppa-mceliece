@@ -12,9 +12,9 @@ The main files to implement the lastest version for Mceliece:
        - error_adder
        - codeword_generator_n_m_v3.vhd
 - Decryption unit for binary (QD-)Goppa codes.
-     - mceliece_qd_goppa_decrypt_v3.vhd
+     - mceliece_qd_goppa_decrypt_v4.vhd
        - polynomial_syndrome_computing_n_v2.vhd
-       - solving_key_equation_4.vhd
+       - solving_key_equation_5.vhd
 
 + folder: mceliece/backup
 
