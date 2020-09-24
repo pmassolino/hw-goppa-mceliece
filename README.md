@@ -72,7 +72,7 @@ The data tests files that are necessary by finite field test benches.
 
 The basic circuits that composes all other circuits, registers, shift registers, counter and ram memories. 
 
-**References: **
+**References:**
 
 This entire project was done as my Master thesis, you can read more about it in :
 
